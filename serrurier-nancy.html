@@ -13,75 +13,71 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
-  <style>
-    :root { --noir: #1a1a1a; --or: #c9a84c; --creme: #faf8f3; --gris: #6b6b6b; --blanc: #ffffff; }
+    <style>
+    :root { --noir: #1a2e4a; --rouge: #e63030; --creme: #faf8f3; --gris: #6b6b6b; --blanc: #ffffff; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Source Sans 3', sans-serif; background: var(--creme); color: var(--noir); line-height: 1.6; }
+    body { font-family: Arial, sans-serif; background: var(--creme); color: var(--noir); line-height: 1.6; }
     nav { background: var(--noir); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 900; color: var(--or); text-decoration: none; }
-    .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
-    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--or); }
-    .nav-tel { background: var(--or); color: var(--noir) !important; padding: 8px 16px; border-radius: 20px; font-weight: 700 !important; }
+    .nav-logo { font-family: Arial, sans-serif; font-size: 1.2rem; font-weight: 900; text-decoration: none; }
+    .nav-logo .le { color: #e63030; }
+    .nav-logo .serrurier { color: #ffffff; }
+    .nav-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+    .nav-links a { color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: 900; font-family: Arial, sans-serif; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #e63030; }
+    .nav-tel { background: #e63030; color: #ffffff !important; padding: 8px 16px; border-radius: 20px; font-weight: 700 !important; }
     .hero { background: var(--noir); color: var(--blanc); padding: 80px 24px 60px; text-align: center; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 0%, rgba(201,168,76,0.18) 0%, transparent 70%); pointer-events: none; }
-    .hero-badge { display: inline-block; background: var(--or); color: var(--noir); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 24px; }
-    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 3.8rem); font-weight: 900; line-height: 1.15; margin-bottom: 20px; }
-    .hero h1 em { color: var(--or); font-style: normal; }
-    .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.75); max-width: 540px; margin: 0 auto 36px; font-weight: 300; }
-    .hero-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--or); color: var(--noir); font-weight: 700; font-size: clamp(0.9rem, 3vw, 1.1rem); padding: 16px 32px; border-radius: 50px; text-decoration: none; white-space: nowrap; transition: transform 0.2s, box-shadow 0.2s; }
-    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
+    .hero-badge { display: inline-block; background: #e63030; color: #ffffff; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 24px; }
+    .hero h1 { font-family: Arial, sans-serif; font-size: clamp(2rem, 6vw, 3.8rem); font-weight: 900; line-height: 1.15; margin-bottom: 20px; }
+    .hero h1 em { color: #e63030; font-style: normal; }
+    .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.75); max-width: 540px; margin: 0 auto 36px; }
+    .hero-cta { display: inline-flex; align-items: center; gap: 10px; background: #e63030; color: #ffffff; font-weight: 700; font-size: clamp(0.9rem, 3vw, 1.1rem); padding: 16px 32px; border-radius: 50px; text-decoration: none; white-space: nowrap; transition: transform 0.2s, box-shadow 0.2s; }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(230,48,48,0.4); }
     .hero-stats { display: flex; justify-content: center; gap: 40px; margin-top: 52px; flex-wrap: wrap; }
-    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; color: var(--or); display: block; }
-    .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em; }
+    .stat-num { font-family: Arial, sans-serif; font-size: 2.2rem; font-weight: 900; color: #ffffff; display: block; }
+    .stat-label { font-family: Arial, sans-serif; font-size: 0.8rem; color: #ffffff; text-transform: uppercase; letter-spacing: 0.08em; }
     .intro { max-width: 760px; margin: 64px auto; padding: 0 24px; text-align: center; }
-    .intro h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 20px; }
+    .intro h2 { font-family: Arial, sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 20px; }
     .intro p { font-size: 1.05rem; color: var(--gris); line-height: 1.8; margin-bottom: 16px; }
     .intro p strong { color: var(--noir); }
     .services { background: var(--blanc); padding: 64px 24px; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; text-align: center; margin-bottom: 48px; }
-    .section-title span { color: var(--or); }
+    .section-title { font-family: Arial, sans-serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; text-align: center; margin-bottom: 48px; }
+    .section-title span { color: #e63030; }
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
-    .service-card { border: 1.5px solid #e8e3d8; border-radius: 16px; padding: 32px 28px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; background: var(--creme); }
-    .service-card:hover { border-color: var(--or); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); }
+    .service-card { border: 1.5px solid #e8e3d8; border-radius: 16px; padding: 32px 28px; transition: border-color 0.2s, transform 0.2s; background: var(--creme); }
+    .service-card:hover { border-color: #e63030; transform: translateY(-4px); }
     .service-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
-    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+    .service-card h3 { font-family: Arial, sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
     .service-card p { font-size: 0.95rem; color: var(--gris); line-height: 1.7; }
-    .service-tag { display: inline-block; margin-top: 14px; font-size: 0.75rem; font-weight: 600; color: var(--or); background: rgba(201,168,76,0.12); padding: 4px 12px; border-radius: 20px; }
+    .service-tag { display: inline-block; margin-top: 14px; font-size: 0.75rem; font-weight: 600; color: #e63030; background: rgba(230,48,48,0.1); padding: 4px 12px; border-radius: 20px; }
     .urgence { background: var(--noir); color: var(--blanc); padding: 64px 24px; text-align: center; }
-    .urgence h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; margin-bottom: 16px; }
-    .urgence h2 em { color: var(--or); font-style: normal; }
+    .urgence h2 { font-family: Arial, sans-serif; font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; margin-bottom: 16px; }
+    .urgence h2 em { color: #e63030; font-style: normal; }
     .urgence p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 520px; margin: 0 auto 36px; }
     .urgence-features { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-bottom: 40px; }
     .urgence-feat { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; color: rgba(255,255,255,0.85); }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--or); flex-shrink: 0; }
-    .quartiers { padding: 64px 24px; max-width: 900px; margin: 0 auto; }
-    .quartiers-intro { font-size: 1.05rem; color: var(--gris); text-align: center; margin-bottom: 36px; line-height: 1.8; }
-    .quartiers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
-    .quartier-item { background: var(--blanc); border: 1.5px solid #e8e3d8; border-radius: 10px; padding: 14px 16px; font-size: 0.9rem; font-weight: 600; text-align: center; transition: border-color 0.2s, color 0.2s; }
-    .quartier-item:hover { border-color: var(--or); color: var(--or); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #e63030; flex-shrink: 0; }
+    .communes { padding: 64px 24px; max-width: 900px; margin: 0 auto; }
+    .communes-intro { font-size: 1.05rem; color: var(--gris); text-align: center; margin-bottom: 36px; line-height: 1.8; }
+    .communes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .commune-item { background: var(--blanc); border: 1.5px solid #e8e3d8; border-radius: 10px; padding: 14px 16px; font-size: 0.9rem; font-weight: 600; text-align: center; transition: border-color 0.2s, color 0.2s; }
+    .commune-item:hover { border-color: #e63030; color: #e63030; }
     .avis { padding: 64px 24px; background: var(--creme); }
-    .avis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
-    .avis-card { background: var(--blanc); border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-    .stars { color: var(--or); font-size: 1rem; margin-bottom: 12px; }
-    .avis-text { font-size: 0.95rem; color: var(--gris); font-style: italic; line-height: 1.7; margin-bottom: 14px; }
-    .avis-author { font-size: 0.85rem; font-weight: 700; }
     .faq-section { background: var(--blanc); padding: 64px 24px; }
     .faq-inner { max-width: 760px; margin: 0 auto; }
     .faq-item { border-bottom: 1.5px solid #e8e3d8; padding: 24px 0; }
     .faq-item:last-child { border-bottom: none; }
-    .faq-q { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+    .faq-q { font-family: Arial, sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
     .faq-a { font-size: 0.98rem; color: var(--gris); line-height: 1.75; }
-    .cta-final { background: var(--or); padding: 64px 24px; text-align: center; }
-    .cta-final h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; color: var(--noir); margin-bottom: 16px; }
-    .cta-final p { font-size: 1.05rem; color: rgba(26,26,26,0.75); margin-bottom: 32px; }
-    .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--noir); color: var(--blanc); font-weight: 700; font-size: clamp(0.8rem, 3.5vw, 1.1rem); padding: 16px 28px; border-radius: 50px; text-decoration: none; white-space: nowrap; transition: transform 0.2s, box-shadow 0.2s; }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .cta-final { background: var(--noir); padding: 64px 24px; text-align: center; }
+    .cta-final h2 { font-family: Arial, sans-serif; font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; color: #ffffff; margin-bottom: 16px; }
+    .cta-final p { font-family: Arial, sans-serif; font-size: 1.05rem; color: rgba(255,255,255,0.75); margin-bottom: 32px; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: #e63030; color: #ffffff; font-weight: 700; font-size: clamp(0.8rem, 3.5vw, 1.1rem); padding: 16px 28px; border-radius: 50px; text-decoration: none; white-space: nowrap; transition: transform 0.2s; }
+    .cta-btn:hover { transform: translateY(-2px); }
     footer { background: var(--noir); color: rgba(255,255,255,0.5); text-align: center; padding: 28px 24px; font-size: 0.85rem; }
-    footer a { color: var(--or); text-decoration: none; }
-    .sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--or); padding: 14px 16px; text-align: center; z-index: 100; white-space: nowrap; overflow: hidden; }
-    .sticky-cta a { color: var(--noir); font-weight: 700; font-size: 0.9rem; text-decoration: none; white-space: nowrap; }
-    @media (max-width: 600px) { .sticky-cta { display: block; } body { padding-bottom: 60px; } .hero-stats { gap: 24px; } }
+    footer a { color: #e63030; text-decoration: none; }
+    .sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #e63030; padding: 14px 16px; text-align: center; z-index: 100; }
+    .sticky-cta a { color: #ffffff; font-weight: 700; font-size: 0.9rem; text-decoration: none; white-space: nowrap; }
+    @media (max-width: 600px) { .sticky-cta { display: block; } body { padding-bottom: 60px; } .hero { padding: 40px 16px; } .hero-stats { gap: 24px; } .services-grid { grid-template-columns: 1fr; } .urgence-features { flex-direction: column; gap: 12px; align-items: flex-start; padding: 0 16px; } }
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"LocalBusiness","name":"Le Serrurier 54 – Nancy","telephone":"0602113846","url":"https://le-serrurier54.fr/serrurier-nancy.html","address":{"@type":"PostalAddress","addressLocality":"Nancy","addressRegion":"Meurthe-et-Moselle","postalCode":"54000","addressCountry":"FR"},"openingHours":"Mo-Su 00:00-24:00","areaServed":["Nancy","Vandœuvre-lès-Nancy","Laxou","Maxéville","Essey-lès-Nancy","Jarville"]}
