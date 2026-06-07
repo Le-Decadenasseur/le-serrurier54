@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serrurier Toul & Nancy – Dépannage 24h/24 | Le Serrurier 54</title>
+  <meta name="description" content="Serrurier à Toul, Nancy et Lunéville disponible 24h/24 · 7j/7. Ouverture de porte, remplacement de serrure, serrure blindée A2P. Devis gratuit. ☎ 06 02 11 38 46" />
+  <meta name="geo.region" content="FR-54" />
+  <meta name="geo.placename" content="Meurthe-et-Moselle" />
+  <meta name="geo.position" content="48.6921;6.1844" />
+  <meta name="ICBM" content="48.6921, 6.1844" />
+  <meta name="author" content="Le Serrurier 54" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://le-serrurier54.fr/" />
+  <meta property="og:title" content="Serrurier Toul & Nancy – Dépannage 24h/24 | Le Serrurier 54" />
+  <meta property="og:description" content="Serrurier professionnel à Toul, Nancy et Lunéville, disponible 24h/24 · 7j/7. ☎ 06 02 11 38 46" />
+  <meta property="og:image" content="https://le-serrurier54.fr/favicon.png" />
+  <meta property="og:site_name" content="Le Serrurier 54" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --noir: #1a2e4a;
+      --or: #c9a84c;
+      --creme: #faf8f3;
+      --gris: #6b6b6b;
+      --blanc: #ffffff;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Source Sans 3', sans-serif; background: var(--creme); color: var(--noir); line-height: 1.6; }
+
+    /* NAV */
+    nav {
+      background: var(--noir);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .nav-logo {
+      font-family: Arial, sans-serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .nav-logo .le { color: #e63030; }
+    .nav-logo .serrurier { color: #ffffff; }
+
+    .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 900;
+      font-family: Arial, sans-serif;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #e63030; }
+    .nav-tel {
+      background: #e63030;
+      color: #ffffff !important;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 700 !important;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--noir);
+      color: var(--blanc);
+      padding: 80px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 0%, rgba(201,168,76,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: #e63030;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: Arial, sans-serif;
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero h1 em { color: #e63030; font-style: normal; }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 540px;
+      margin: 0 auto 36px;
+      font-weight: 300;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #e63030;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
+      padding: 16px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 52px;
+      flex-wrap: wrap;
+    }
+    .stat-num {
+      font-family: Arial, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #ffffff;
+      display: block;
+    }
+    .stat-label { font-family: Arial, sans-serif; font-size: 0.8rem; color: #ffffff; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* VILLES */
+    .villes {
+      padding: 64px 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-family: Arial, sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-title span { color: #e63030; }
+    .villes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .ville-card {
+      background: var(--blanc);
+      border: 1.5px solid #e8e3d8;
+      border-radius: 20px;
+      padding: 36px 28px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--noir);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+    .ville-card:hover {
+      border-color: var(--or);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+    }
+    .ville-icon { font-size: 2.5rem; margin-bottom: 14px; display: block; }
+    .ville-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--noir);
+    }
+    .ville-card p { font-size: 0.95rem; color: var(--gris); margin-bottom: 20px; line-height: 1.6; }
+    .ville-btn {
+      display: inline-block;
+      background: var(--or);
+      color: var(--noir);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 10px 22px;
+      border-radius: 20px;
+    }
+
+    /* SERVICES */
+    .services { background: var(--blanc); padding: 64px 24px; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .service-card {
+      border: 1.5px solid #e8e3d8;
+      border-radius: 16px;
+      padding: 28px;
+      background: var(--creme);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .service-card:hover { border-color: var(--or); transform: translateY(-3px); }
+    .service-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
+    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .service-card p { font-size: 0.93rem; color: var(--gris); line-height: 1.7; }
+    .service-tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--or);
+      background: rgba(201,168,76,0.12);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* URGENCE */
+    .urgence {
+      background: var(--noir);
+      color: var(--blanc);
+      padding: 64px 24px;
+      text-align: center;
+    }
+    .urgence h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+    .urgence h2 em { color: var(--or); font-style: normal; }
+    .urgence p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 520px; margin: 0 auto 36px; }
+    .urgence-features { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-bottom: 40px; }
+    .urgence-feat { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; color: rgba(255,255,255,0.85); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--or); flex-shrink: 0; }
+
+    /* ZONE */
+    .zone { padding: 64px 24px; max-width: 900px; margin: 0 auto; text-align: center; }
+    .zone p { font-size: 1.05rem; color: var(--gris); margin-bottom: 32px; line-height: 1.8; }
+    .zone-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .zone-item {
+      background: var(--blanc);
+      border: 1.5px solid #e8e3d8;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* AVIS */
+    .avis { padding: 64px 24px; background: var(--creme); }
+    .avis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .avis-card { background: var(--blanc); border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    .stars { color: var(--or); font-size: 1rem; margin-bottom: 12px; }
+    .avis-text { font-size: 0.95rem; color: var(--gris); font-style: italic; line-height: 1.7; margin-bottom: 14px; }
+    .avis-author { font-size: 0.85rem; font-weight: 700; }
+
+    /* FAQ */
+    .faq { background: var(--blanc); padding: 64px 24px; }
+    .faq-inner { max-width: 760px; margin: 0 auto; }
+    .faq-item { border-bottom: 1.5px solid #e8e3d8; padding: 22px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .faq-a { font-size: 0.98rem; color: var(--gris); line-height: 1.75; }
+
+    /* CTA FINAL */
+    .cta-final { background: var(--noir); padding: 64px 24px; text-align: center; }
+    .cta-final h2 { font-family: Arial, sans-serif; font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; color: #ffffff; margin-bottom: 16px; }
+    .cta-final p { font-family: Arial, sans-serif; font-size: 1.05rem; color: rgba(255,255,255,0.75); margin-bottom: 32px; }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--noir);
+      color: var(--blanc);
+      font-weight: 700;
+      font-size: clamp(0.8rem, 3.5vw, 1.1rem);
+      padding: 16px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+    /* FOOTER */
+    footer { background: var(--noir); color: rgba(255,255,255,0.5); text-align: center; padding: 28px 24px; font-size: 0.85rem; }
+    footer a { color: var(--or); text-decoration: none; }
+
+    /* STICKY */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--or);
+      padding: 14px 16px;
+      text-align: center;
+      z-index: 100;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .sticky-cta a { color: var(--noir); font-weight: 700; font-size: 0.9rem; text-decoration: none; white-space: nowrap; }
+    @media (max-width: 600px) {
+      .sticky-cta { display: block; }
+      body { padding-bottom: 60px; }
+      nav { padding: 12px 16px; }
+      .nav-tagline { display: none; }
+      .nav-links { gap: 10px; }
+      .nav-links a { font-size: 0.8rem; }
+      .hero { padding: 40px 16px 40px; }
+      .hero-stats { gap: 16px; }
+      .stat-num { font-size: 1.6rem; }
+      .villes-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .urgence-features { flex-direction: column; gap: 12px; align-items: flex-start; padding: 0 16px; }
+      .zone-grid { gap: 8px; }
+      .avis-grid { grid-template-columns: 1fr; }
+      .faq-inner { padding: 0 8px; }
+      .cta-final { padding: 40px 16px; }
+      .section-title { margin-bottom: 28px; }
+      .villes { padding: 40px 16px; }
+      .services { padding: 40px 16px; }
+      .urgence { padding: 40px 16px; }
+      .zone { padding: 40px 16px; }
+      .avis { padding: 40px 16px; }
+      .faq { padding: 40px 16px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Le Serrurier 54",
+    "telephone": "0602113846",
+    "url": "https://le-serrurier54.fr",
+    "address": { "@type": "PostalAddress", "addressRegion": "Meurthe-et-Moselle", "addressCountry": "FR" },
+    "openingHours": "Mo-Su 00:00-24:00",
+    "areaServed": ["Nancy", "Toul", "Lunéville", "Vandœuvre-lès-Nancy", "Laxou", "Pont-à-Mousson"]
+  }
+  </script>
+</head>
+<body>
+
+<nav style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:16px 24px;">
+  <a href="index.html" class="nav-logo"><span class="le">LE</span> <span class="serrurier">SERRURIER 54</span></a>
+  <div class="nav-links" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+    <a href="serrurier-nancy.html">Nancy</a>
+    <a href="serrurier-toul.html">Toul</a>
+    <a href="serrurier-luneville.html">Lunéville</a>
+    <a href="serrurier-pont-a-mousson.html">Pont-à-Mousson</a>
+    <a href="serrurier-vandoeuvre.html">Vandœuvre</a>
+    <a href="tel:0602113846" class="nav-tel">✆ 06 02 11 38 46</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <p style="font-family:Arial,sans-serif;font-size:1.1rem;font-weight:900;color:#ffffff;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;">Artisan Local</p>
+  <img src="data:image/png;base64,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" alt="Logo Le Serrurier 54" style="height:100px;width:auto;margin-bottom:20px;display:block;margin-left:auto;margin-right:auto;">
+  <div class="hero-badge">📍 Meurthe-et-Moselle (54) — Toul · Nancy · Lunéville</div>
+  <h1>Votre serrurier de <em>confiance</em>,<br>disponible quand vous en avez besoin</h1>
+  <p class="hero-sub">Porte claquée, clé perdue, serrure bloquée — on arrive vite, on travaille bien, et on vous explique tout avant de commencer.</p>
+  <a href="tel:0602113846" class="hero-cta">📞 Appeler le 06 02 11 38 46</a>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">24h</span><span class="stat-label">Disponible</span></div>
+    <div class="stat"><span class="stat-num">7j</span><span class="stat-label">Sur 7</span></div>
+    <div class="stat"><span class="stat-num">0€</span><span class="stat-label">Devis</span></div>
+  </div>
+</header>
+
+<!-- VILLES -->
+<section class="villes">
+  <h2 class="section-title">Nos zones d'intervention <span>principales</span></h2>
+  <div class="villes-grid">
+    <a href="serrurier-nancy.html" class="ville-card">
+      <span class="ville-icon">🏙️</span>
+      <h3>Serrurier Nancy</h3>
+      <p>Intervention rapide dans Nancy et toute l'agglomération nancéienne, 24h/24 et 7j/7.</p>
+      <span class="ville-btn">Voir la page Nancy →</span>
+    </a>
+    <a href="serrurier-toul.html" class="ville-card">
+      <span class="ville-icon">🏘️</span>
+      <h3>Serrurier Toul</h3>
+      <p>Dépannage serrurerie à Toul et ses communes environnantes. Disponible nuits et week-ends.</p>
+      <span class="ville-btn">Voir la page Toul →</span>
+    </a>
+    <a href="serrurier-luneville.html" class="ville-card">
+      <span class="ville-icon">🏰</span>
+      <h3>Serrurier Lunéville</h3>
+      <p>Serrurier à Lunéville et dans tout le secteur Est de la Meurthe-et-Moselle.</p>
+      <span class="ville-btn">Voir la page Lunéville →</span>
+    </a>
+    <a href="serrurier-pont-a-mousson.html" class="ville-card">
+      <span class="ville-icon">🌉</span>
+      <h3>Serrurier Pont-à-Mousson</h3>
+      <p>Intervention rapide à Pont-à-Mousson et dans toute la vallée de la Moselle.</p>
+      <span class="ville-btn">Voir la page Pont-à-Mousson →</span>
+    </a>
+    <a href="serrurier-vandoeuvre.html" class="ville-card">
+      <span class="ville-icon">🏢</span>
+      <h3>Serrurier Vandœuvre</h3>
+      <p>Serrurier à Vandœuvre-lès-Nancy et dans toute la couronne sud de Nancy.</p>
+      <span class="ville-btn">Voir la page Vandœuvre →</span>
+    </a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <h2 class="section-title">Tous nos <span>services de serrurerie</span></h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🚪</span>
+      <h3>Ouverture de porte</h3>
+      <p>Porte claquée, clé perdue ou serrure bloquée — on intervient rapidement sans abîmer votre porte.</p>
+      <span class="service-tag">Urgence 24h/24</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🔑</span>
+      <h3>Clé cassée</h3>
+      <p>Extraction de clé cassée dans la serrure. Duplication et remplacement sur place si nécessaire.</p>
+      <span class="service-tag">Intervention rapide</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">⚙️</span>
+      <h3>Remplacement de cylindre</h3>
+      <p>Changement de cylindre suite à une perte de clé, un cambriolage ou pour renforcer votre sécurité.</p>
+      <span class="service-tag">Sécurité renforcée</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🔧</span>
+      <h3>Changement & réparation de serrure</h3>
+      <p>Remplacement ou réparation de serrure défectueuse, abîmée ou ancienne. On intervient sur tous types de serrures, à domicile ou en urgence.</p>
+      <span class="service-tag">Toutes marques</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🔒</span>
+      <h3>Ferme-porte</h3>
+      <p>Installation et réglage de ferme-portes pour copropriétés, commerces et particuliers.</p>
+      <span class="service-tag">Pose & réglage</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">📱</span>
+      <h3>Serrure connectée</h3>
+      <p>Ouverture par smartphone, digicode ou badge. Conseil et pose sur mesure.</p>
+      <span class="service-tag">Domotique</span>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCE -->
+<section class="urgence">
+  <h2>Urgence serrurerie ?<br><em>On arrive.</em></h2>
+  <p>Bloqué dehors en pleine nuit, après un cambriolage ou porte claquée — un seul numéro à toute heure.</p>
+  <div class="urgence-features">
+    <div class="urgence-feat"><span class="dot"></span>Disponible 24h/24 · 7j/7</div>
+    <div class="urgence-feat"><span class="dot"></span>Devis avant intervention</div>
+    <div class="urgence-feat"><span class="dot"></span>Artisan qualifié et assuré</div>
+    <div class="urgence-feat"><span class="dot"></span>50 km autour de Toul et Nancy</div>
+  </div>
+  <a href="tel:0602113846" class="hero-cta">📞 06 02 11 38 46</a>
+</section>
+
+<!-- ZONE -->
+<section class="zone">
+  <h2 class="section-title">Zone d'intervention — <span>Meurthe-et-Moselle</span></h2>
+  <p>On intervient à Toul, Nancy, Lunéville et dans un rayon de 50 km, couvrant tout le département 54.</p>
+  <div class="zone-grid">
+    <div class="zone-item">Nancy</div>
+    <div class="zone-item">Toul</div>
+    <div class="zone-item">Écrouves</div>
+    <div class="zone-item">Lunéville</div>
+    <div class="zone-item">Vandœuvre</div>
+    <div class="zone-item">Laxou</div>
+    <div class="zone-item">Maxéville</div>
+    <div class="zone-item">Pont-à-Mousson</div>
+    <div class="zone-item">Neuves-Maisons</div>
+    <div class="zone-item">Saint-Nicolas-de-Port</div>
+    <div class="zone-item">Jarville</div>
+    <div class="zone-item">Essey-lès-Nancy</div>
+    <div class="zone-item">Pompey</div>
+    <div class="zone-item">Dombasle</div>
+    <div class="zone-item">Saint-Max</div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section class="avis">
+  <h2 class="section-title">Nos <span>avis Google</span></h2>
+  <div style="text-align:center;padding:20px 24px 40px;">
+    <a href="https://share.google/vcaFxfXUp2qLICitK" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:var(--noir);color:var(--blanc);font-weight:700;font-size:0.95rem;padding:14px 28px;border-radius:50px;text-decoration:none;margin:8px;">⭐ Voir tous nos avis Google</a>
+    <a href="https://share.google/vcaFxfXUp2qLICitK" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.15);color:var(--or);font-weight:700;font-size:0.9rem;padding:14px 28px;border-radius:50px;text-decoration:none;margin:8px;border:1.5px solid var(--or);">✏️ Laisser un avis</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <h2 class="section-title">Questions <span>fréquentes</span></h2>
+    <div class="faq-item">
+      <p class="faq-q">Intervenez-vous en urgence la nuit à Toul et Nancy ?</p>
+      <p class="faq-a">Oui, nous sommes disponibles 24h/24 et 7j/7, y compris les nuits, week-ends et jours fériés, à Toul, Nancy, Lunéville et dans tout le 54.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Quel est le délai d'intervention ?</p>
+      <p class="faq-a">Nous intervenons le plus rapidement possible selon votre localisation. Appelez le 06 02 11 38 46 pour une estimation précise.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Combien coûte l'ouverture d'une porte claquée ?</p>
+      <p class="faq-a">Le tarif dépend du type de serrure et de l'heure d'intervention. Nous communiquons toujours le devis avant toute intervention, sans frais cachés.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Posez-vous des serrures blindées certifiées A2P ?</p>
+      <p class="faq-a">Oui, nous installons des serrures blindées A2P (1, 2 ou 3 étoiles) pour particuliers et professionnels dans toute la Meurthe-et-Moselle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section style="background:var(--blanc);padding:64px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 class="section-title">Nos <span>conseils serrurerie</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
+      <a href="blog-bloque-dehors-nuit.html" style="display:block;background:var(--creme);border:1.5px solid #e8e3d8;border-radius:16px;padding:28px;text-decoration:none;color:var(--noir);transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.borderColor='#e63030';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e8e3d8';this.style.transform='translateY(0)'">
+        <span style="display:inline-block;background:#e63030;color:#fff;font-size:0.75rem;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em;">Urgence</span>
+        <h3 style="font-family:Arial,sans-serif;font-size:1.1rem;font-weight:900;margin-bottom:10px;color:var(--noir);">Que faire si vous êtes bloqué dehors la nuit ?</h3>
+        <p style="font-size:0.95rem;color:#6b6b6b;line-height:1.6;margin-bottom:16px;">Porte claquée, clé perdue ou serrure bloquée — les étapes à suivre pour gérer la situation sans panique.</p>
+        <span style="color:#e63030;font-weight:700;font-size:0.9rem;">Lire l'article →</span>
+      </a>
+      <a href="blog-choisir-serrure.html" style="display:block;background:var(--creme);border:1.5px solid #e8e3d8;border-radius:16px;padding:28px;text-decoration:none;color:var(--noir);transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.borderColor='#e63030';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e8e3d8';this.style.transform='translateY(0)'">
+        <span style="display:inline-block;background:#e63030;color:#fff;font-size:0.75rem;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em;">Conseil</span>
+        <h3 style="font-family:Arial,sans-serif;font-size:1.1rem;font-weight:900;margin-bottom:10px;color:var(--noir);">Comment choisir sa serrure pour sécuriser son logement ?</h3>
+        <p style="font-size:0.95rem;color:#6b6b6b;line-height:1.6;margin-bottom:16px;">A2P, cylindre haute sécurité, serrure connectée — le guide complet pour faire le bon choix.</p>
+        <span style="color:#e63030;font-weight:700;font-size:0.9rem;">Lire l'article →</span>
+      </a>
+      <a href="blog-prix-serrurier.html" style="display:block;background:var(--creme);border:1.5px solid #e8e3d8;border-radius:16px;padding:28px;text-decoration:none;color:var(--noir);transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.borderColor='#e63030';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='#e8e3d8';this.style.transform='translateY(0)'">
+        <span style="display:inline-block;background:#e63030;color:#fff;font-size:0.75rem;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em;">Tarifs</span>
+        <h3 style="font-family:Arial,sans-serif;font-size:1.1rem;font-weight:900;margin-bottom:10px;color:var(--noir);">Prix d'un serrurier en Meurthe-et-Moselle</h3>
+        <p style="font-size:0.95rem;color:#6b6b6b;line-height:1.6;margin-bottom:16px;">Tarifs 2026, comment éviter les arnaques et ce que dit la loi sur les devis obligatoires.</p>
+        <span style="color:#e63030;font-weight:700;font-size:0.9rem;">Lire l'article →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <h2>Besoin d'un serrurier ?</h2>
+  <p>On est là, disponibles maintenant. Devis gratuit avant toute intervention.</p>
+  <a href="tel:0602113846" class="cta-btn">📞 Appeler maintenant — 06 02 11 38 46</a>
+</section>
+
+<footer>
+  <p>© 2026 Le Serrurier 54 — Artisan serrurier Meurthe-et-Moselle (54) — <a href="tel:0602113846">06 02 11 38 46</a></p>
+  <p style="margin-top:8px;"><a href="serrurier-nancy.html">Nancy</a> · <a href="serrurier-toul.html">Toul</a> · <a href="serrurier-luneville.html">Lunéville</a> · <a href="serrurier-pont-a-mousson.html">Pont-à-Mousson</a> · <a href="serrurier-vandoeuvre.html">Vandœuvre</a></p>
+  <p style="margin-top:8px;"><a href="blog-bloque-dehors-nuit.html">Bloqué dehors la nuit ?</a> · <a href="blog-choisir-serrure.html">Choisir sa serrure</a> · <a href="blog-prix-serrurier.html">Prix serrurier 54</a></p>
+</footer>
+
+<div class="sticky-cta">
+  <a href="tel:0602113846">📞 Appeler maintenant — 06 02 11 38 46</a>
+</div>
+
+</body>
+</html>
