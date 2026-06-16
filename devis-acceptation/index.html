@@ -1,1 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Acceptation de Devis – Le Serrurier 54</title>
+<link rel="manifest" href="/devis-acceptation/manifest.json">
+<meta name="theme-color" content="#0C1B2E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Devis LS54">
+<link rel="apple-touch-icon" href="/devis-acceptation/icon-192.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 16px; color: #1a1a1a; }
+  .card { background: white; border-radius: 10px; padding: 20px; max-width: 480px; margin: 0 auto; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 
+  .header { background: #0C1B2E; color: white; border-radius: 8px; padding: 14px 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+  .header .logo-text { font-size: 18px; font-weight: 900; letter-spacing: 1px; }
+  .header .logo-text span { color: #E64D3B; }
+  .header .contact { font-size: 11px; text-align: right; opacity: 0.85; }
+
+  h1 { font-size: 16px; font-weight: 700; text-align: center; color: #0C1B2E; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .section-label { font-size: 11px; font-weight: 700; color: #E64D3B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; margin-top: 16px; }
+
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 4px; }
+  .info-box { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 10px 12px; }
+  .info-box.full { grid-column: 1 / -1; }
+  .info-box label { font-size: 10px; color: #888; display: block; margin-bottom: 3px; text-transform: uppercase; }
+  .info-box .val { font-size: 14px; font-weight: 600; color: #0C1B2E; min-height: 20px; border: none; background: transparent; width: 100%; outline: none; font-family: Arial, sans-serif; }
+  .info-box .val::placeholder { color: #bbb; font-weight: 400; }
+
+  .montant-box { background: #0C1B2E; color: white; border-radius: 8px; padding: 14px 16px; margin: 16px 0; display: flex; justify-content: space-between; align-items: center; }
+  .montant-box .label { font-size: 13px; opacity: 0.8; }
+  .montant-box .amount { font-size: 22px; font-weight: 900; border: none; background: transparent; color: #fff; text-align: right; width: 140px; font-family: Arial, sans-serif; outline: none; }
+  .montant-box .amount::placeholder { color: rgba(255,255,255,0.4); font-weight: 400; font-size: 16px; }
+
+  .mentions { background: #f8f9fa; border-left: 3px solid #E64D3B; border-radius: 0 6px 6px 0; padding: 12px 14px; font-size: 12px; color: #444; line-height: 1.6; margin: 16px 0; }
+  .mentions strong { color: #0C1B2E; }
+
+  .sig-label { font-size: 11px; font-weight: 700; color: #E64D3B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .sig-instructions { font-size: 12px; color: #666; margin-bottom: 8px; text-align: center; }
+
+  canvas#sigPad { display: block; width: 100%; height: 160px; border: 2px dashed #0C1B2E; border-radius: 8px; background: #fafafa; cursor: crosshair; touch-action: none; }
+  canvas#sigPad.signed { border-style: solid; border-color: #27ae60; background: white; }
+
+  .sig-actions { display: flex; justify-content: flex-end; margin-top: 6px; }
+  .btn-clear { font-size: 12px; color: #888; background: none; border: 1px solid #ddd; border-radius: 4px; padding: 5px 12px; cursor: pointer; }
+
+  .client-info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+
+  .btn-valider { display: block; width: 100%; background: #E64D3B; color: white; border: none; border-radius: 8px; padding: 16px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 20px; letter-spacing: 0.5px; }
+  .btn-valider:active { background: #c0392b; }
+  .btn-valider:disabled { opacity: 0.5; cursor: default; }
+
+  .btn-nouveau { display: block; width: 100%; background: #0C1B2E; color: white; border: none; border-radius: 8px; padding: 13px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+
+  #confirmation { display: none; background: #27ae60; color: white; border-radius: 8px; padding: 16px; text-align: center; margin-top: 16px; font-weight: 700; font-size: 15px; }
+  #loadingMsg { display: none; text-align: center; color: #0C1B2E; font-size: 13px; margin-top: 12px; padding: 10px; }
+
+  .footer { text-align: center; font-size: 10px; color: #aaa; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="header">
+    <div class="logo-text"><span>LE</span> SERRURIER 54</div>
+    <div class="contact">06 02 11 38 46<br>le-serrurier54.fr</div>
+  </div>
+
+  <h1>Bon d'acceptation de devis</h1>
+
+  <div class="section-label">Informations du devis</div>
+  <div class="info-grid">
+    <div class="info-box">
+      <label>N° devis</label>
+      <input class="val" id="numDevis" type="text" placeholder="2026-001">
+    </div>
+    <div class="info-box">
+      <label>Date</label>
+      <input class="val" id="dateDevis" type="text">
+    </div>
+    <div class="info-box full">
+      <label>Client</label>
+      <input class="val" id="nomClient" type="text" placeholder="Nom Prénom">
+    </div>
+    <div class="info-box full">
+      <label>Adresse d'intervention</label>
+      <input class="val" id="adresse" type="text" placeholder="N° rue, ville">
+    </div>
+    <div class="info-box full">
+      <label>Prestation</label>
+      <input class="val" id="prestation" type="text" placeholder="Ex : Remplacement serrure 3 points">
+    </div>
+  </div>
+
+  <div class="montant-box">
+    <div>
+      <div class="label">Montant TTC</div>
+      <div style="font-size:10px;opacity:0.6;">Toutes taxes comprises</div>
+    </div>
+    <input class="amount" id="montant" type="text" placeholder="0,00 €">
+  </div>
+
+  <div class="mentions">
+    <strong>Le client reconnaît :</strong><br>
+    • Avoir pris connaissance du devis ci-dessus et en accepter le contenu et le montant.<br>
+    • Donner son accord exprès pour l'exécution des travaux.<br>
+    • Avoir été informé de son droit de rétractation conformément à l'article L221-18 du Code de la consommation.<br><br>
+    <strong>Note :</strong> En cas de travaux urgents demandés par le client (ouverture de porte, urgence), le droit de rétractation ne s'applique pas.
+  </div>
+
+  <div class="sig-label">Signature du client</div>
+  <p class="sig-instructions">👆 Signez ci-dessous avec votre doigt</p>
+  <canvas id="sigPad"></canvas>
+  <div class="sig-actions">
+    <button class="btn-clear" onclick="effacerSignature()">✕ Effacer</button>
+  </div>
+
+  <div class="client-info">
+    <div class="info-box">
+      <label>Lu et approuvé</label>
+      <input class="val" id="luApprouve" type="text" placeholder="Nom du signataire">
+    </div>
+    <div class="info-box">
+      <label>Date de signature</label>
+      <input class="val" id="dateSig" type="text">
+    </div>
+  </div>
+
+  <button class="btn-valider" id="btnValider" onclick="valider()">✔ Valider et télécharger le PDF</button>
+  <div id="loadingMsg">⏳ Génération du PDF en cours...</div>
+  <div id="confirmation">
+    ✅ PDF généré et téléchargé !<br>
+    <span style="font-size:12px;font-weight:400;opacity:0.9;">Vérifiez vos téléchargements.</span>
+  </div>
+  <button class="btn-nouveau" id="btnNouveau" style="display:none" onclick="nouveauDevis()">+ Nouveau devis</button>
+
+  <div class="footer">Le Serrurier 54 · M. QUELEN · le-serrurier54.fr · 06 02 11 38 46</div>
+</div>
+
+<script>
+// Service Worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/devis-acceptation/sw.js');
+}
+
+// Date auto
+(function() {
+  const t = new Date();
+  const dd = String(t.getDate()).padStart(2,'0');
+  const mm = String(t.getMonth()+1).padStart(2,'0');
+  const yyyy = t.getFullYear();
+  const date = dd+'/'+mm+'/'+yyyy;
+  document.getElementById('dateDevis').value = date;
+  document.getElementById('dateSig').value = date;
+})();
+
+// CANVAS SIGNATURE
+const canvas = document.getElementById('sigPad');
+const ctx = canvas.getContext('2d');
+let drawing = false, hasSigned = false;
+
+function resizeCanvas() {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.strokeStyle = '#0C1B2E';
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+}
+window.addEventListener('load', resizeCanvas);
+
+function getPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  if (e.touches) return { x: e.touches[0].clientX - rect.left, y: e.touches[0].clientY - rect.top };
+  return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+}
+
+canvas.addEventListener('mousedown', e => { drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
+canvas.addEventListener('mousemove', e => { if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasSigned = true; canvas.classList.add('signed'); });
+canvas.addEventListener('mouseup', () => drawing = false);
+canvas.addEventListener('mouseleave', () => drawing = false);
+canvas.addEventListener('touchstart', e => { e.preventDefault(); drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }, { passive: false });
+canvas.addEventListener('touchmove', e => { e.preventDefault(); if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasSigned = true; canvas.classList.add('signed'); }, { passive: false });
+canvas.addEventListener('touchend', () => drawing = false);
+
+function effacerSignature() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  hasSigned = false;
+  canvas.classList.remove('signed');
+}
+
+function nouveauDevis() {
+  ['numDevis','nomClient','adresse','prestation','montant','luApprouve'].forEach(id => document.getElementById(id).value = '');
+  const t = new Date();
+  const date = String(t.getDate()).padStart(2,'0')+'/'+String(t.getMonth()+1).padStart(2,'0')+'/'+t.getFullYear();
+  document.getElementById('dateDevis').value = date;
+  document.getElementById('dateSig').value = date;
+  effacerSignature();
+  document.getElementById('confirmation').style.display = 'none';
+  document.getElementById('btnNouveau').style.display = 'none';
+  document.getElementById('btnValider').disabled = false;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function valider() {
+  const nom = document.getElementById('nomClient').value.trim();
+  const montant = document.getElementById('montant').value.trim();
+  const prestation = document.getElementById('prestation').value.trim();
+  if (!nom) { alert('Veuillez saisir le nom du client.'); return; }
+  if (!montant) { alert('Veuillez saisir le montant du devis.'); return; }
+  if (!prestation) { alert('Veuillez saisir la prestation.'); return; }
+  if (!hasSigned) { alert('Le client doit signer avant de valider.'); return; }
+  document.getElementById('btnValider').disabled = true;
+  document.getElementById('loadingMsg').style.display = 'block';
+  setTimeout(() => genererPDF(), 100);
+}
+
+function genererPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+  const W = 210, ml = 15, mr = 15, cw = W - ml - mr;
+  let y = 0;
+
+  doc.setFillColor(12, 27, 46);
+  doc.roundedRect(ml, 10, cw, 22, 3, 3, 'F');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  doc.setTextColor(230, 77, 59);
+  doc.text('LE', ml + 6, 23);
+  doc.setTextColor(255, 255, 255);
+  doc.text(' SERRURIER 54', ml + 6 + doc.getTextWidth('LE'), 23);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8);
+  doc.setTextColor(200, 200, 200);
+  doc.text('06 02 11 38 46', W - mr - 6, 19, { align: 'right' });
+  doc.text('le-serrurier54.fr', W - mr - 6, 24, { align: 'right' });
+  y = 40;
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(13);
+  doc.setTextColor(12, 27, 46);
+  doc.text("BON D'ACCEPTATION DE DEVIS", W / 2, y, { align: 'center' });
+  y += 8;
+  doc.setDrawColor(230, 77, 59);
+  doc.setLineWidth(0.8);
+  doc.line(ml, y, W - mr, y);
+  y += 8;
+
+  const numDevis = document.getElementById('numDevis').value || '—';
+  const dateDevis = document.getElementById('dateDevis').value || '—';
+  const nomClient = document.getElementById('nomClient').value || '—';
+  const adresse = document.getElementById('adresse').value || '—';
+  const prestation = document.getElementById('prestation').value || '—';
+  const montant = document.getElementById('montant').value || '—';
+  const luApprouve = document.getElementById('luApprouve').value || nomClient;
+  const dateSig = document.getElementById('dateSig').value || '—';
+
+  function drawInfoBox(x, y, w, h, labelTxt, valueTxt) {
+    doc.setFillColor(248, 249, 250);
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(x, y, w, h, 2, 2, 'FD');
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    doc.setTextColor(150, 150, 150);
+    doc.text(labelTxt.toUpperCase(), x + 3, y + 5);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(12, 27, 46);
+    const wrapped = doc.splitTextToSize(valueTxt, w - 6);
+    doc.text(wrapped[0], x + 3, y + 11);
+  }
+
+  const colW = (cw - 4) / 2;
+  drawInfoBox(ml, y, colW, 16, 'N° Devis', numDevis);
+  drawInfoBox(ml + colW + 4, y, colW, 16, 'Date', dateDevis);
+  y += 20;
+  drawInfoBox(ml, y, cw, 16, 'Client', nomClient);
+  y += 20;
+  drawInfoBox(ml, y, cw, 16, "Adresse d'intervention", adresse);
+  y += 20;
+  drawInfoBox(ml, y, cw, 16, 'Prestation', prestation);
+  y += 22;
+
+  doc.setFillColor(12, 27, 46);
+  doc.roundedRect(ml, y, cw, 18, 3, 3, 'F');
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(180, 180, 180);
+  doc.text('Montant TTC', ml + 6, y + 7);
+  doc.setFontSize(7);
+  doc.text('Toutes taxes comprises', ml + 6, y + 12);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  doc.setTextColor(255, 255, 255);
+  doc.text(montant, W - mr - 6, y + 12, { align: 'right' });
+  y += 24;
+
+  doc.setFillColor(248, 249, 250);
+  doc.setDrawColor(230, 77, 59);
+  doc.setLineWidth(1);
+  doc.line(ml, y, ml, y + 38);
+  doc.setLineWidth(0.3);
+  doc.setDrawColor(220, 220, 220);
+  doc.rect(ml + 1, y, cw - 1, 38, 'F');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  doc.setTextColor(12, 27, 46);
+  doc.text('Le client reconnait :', ml + 5, y + 7);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(7.5);
+  doc.setTextColor(60, 60, 60);
+  const lignes = [
+    '• Avoir pris connaissance du devis ci-dessus et en accepter le contenu et le montant.',
+    '• Donner son accord expres pour l\'execution des travaux.',
+    '• Avoir ete informe de son droit de retractation (art. L221-18 Code de la consommation).',
+    'Note : En cas de travaux urgents demandes par le client, le droit de retractation ne s\'applique pas.'
+  ];
+  let ly = y + 13;
+  lignes.forEach(l => {
+    const wrapped = doc.splitTextToSize(l, cw - 8);
+    doc.text(wrapped, ml + 5, ly);
+    ly += wrapped.length * 4.5;
+  });
+  y += 44;
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  doc.setTextColor(230, 77, 59);
+  doc.text('SIGNATURE DU CLIENT', ml, y);
+  y += 5;
+  doc.setDrawColor(12, 27, 46);
+  doc.setLineWidth(0.5);
+  doc.roundedRect(ml, y, cw, 35, 2, 2, 'S');
+  const sigData = canvas.toDataURL('image/png');
+  doc.addImage(sigData, 'PNG', ml + 2, y + 2, cw - 4, 31);
+  y += 38;
+
+  drawInfoBox(ml, y, colW, 16, 'Lu et approuve', luApprouve);
+  drawInfoBox(ml + colW + 4, y, colW, 16, 'Date de signature', dateSig);
+  y += 22;
+
+  doc.setDrawColor(12, 27, 46);
+  doc.setLineWidth(0.3);
+  doc.line(ml, y, W - mr, y);
+  y += 5;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(7);
+  doc.setTextColor(150, 150, 150);
+  doc.text('Le Serrurier 54 · M. QUELEN · le-serrurier54.fr · 06 02 11 38 46', W / 2, y, { align: 'center' });
+
+  const filename = 'acceptation-devis-' + (document.getElementById('numDevis').value || 'LS54') + '.pdf';
+  doc.save(filename);
+
+  document.getElementById('loadingMsg').style.display = 'none';
+  document.getElementById('confirmation').style.display = 'block';
+  document.getElementById('btnNouveau').style.display = 'block';
+  document.getElementById('confirmation').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
