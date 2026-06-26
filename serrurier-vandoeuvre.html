@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNXT3T16XE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JNXT3T16XE');
+    document.addEventListener('DOMContentLoaded', function(){
+      document.querySelectorAll('a[href="tel:0602113846"]').forEach(function(l){
+        l.addEventListener('click', function(){
+          gtag('event','phone_call',{'event_category':'Contact','event_label':'0602113846','value':1});
+        });
+      });
+    });
+  </script>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" href="favicon.png" />
@@ -91,14 +106,10 @@
   {"@context":"https://schema.org","@type":"LocalBusiness","name":"Le Serrurier 54 – Vandœuvre-lès-Nancy","telephone":"0602113846","url":"https://le-serrurier54.fr/serrurier-vandoeuvre.html","address":{"@type":"PostalAddress","addressLocality":"Vandœuvre-lès-Nancy","addressRegion":"Meurthe-et-Moselle","postalCode":"54500","addressCountry":"FR"},"openingHours":"Mo-Su 00:00-24:00","areaServed":["Vandœuvre-lès-Nancy","Laxou","Maxéville","Saint-Max","Essey-lès-Nancy"]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Intervenez-vous dans les résidences de Vandœuvre comme Brabois ?","acceptedAnswer":{"@type":"Answer","text":"Oui, nous intervenons dans tous les quartiers et résidences de Vandœuvre-lès-Nancy, y compris Brabois, Nations, Technopôle et toutes les copropriétés."}},
-{"@type":"Question","name":"Puis-je faire changer ma serrure si je suis locataire à Vandœuvre ?","acceptedAnswer":{"@type":"Answer","text":"En cas de perte de clé ou de problème de sécurité, oui. Informez votre propriétaire et conservez un double de la nouvelle clé pour lui remettre. Consultez votre contrat de bail pour les conditions."}}]}
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Intervenez-vous dans les résidences de Vandœuvre comme Brabois ?","acceptedAnswer":{"@type":"Answer","text":"Oui, nous intervenons dans tous les quartiers et résidences de Vandœuvre-lès-Nancy, y compris Brabois, Nations, Technopôle et toutes les copropriétés."}},{"@type":"Question","name":"Puis-je faire changer ma serrure si je suis locataire à Vandœuvre ?","acceptedAnswer":{"@type":"Answer","text":"En cas de perte de clé ou de problème de sécurité, oui. Informez votre propriétaire et conservez un double de la nouvelle clé pour lui remettre. Consultez votre contrat de bail pour les conditions."}}]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Accueil","item":"https://le-serrurier54.fr/"},
-    {"@type":"ListItem","position":2,"name":"Serrurier Vandœuvre-lès-Nancy","item":"https://le-serrurier54.fr/serrurier-vandoeuvre.html"}
-  ]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://le-serrurier54.fr/"},{"@type":"ListItem","position":2,"name":"Serrurier Vandœuvre-lès-Nancy","item":"https://le-serrurier54.fr/serrurier-vandoeuvre.html"}]}
   </script>
 </head>
 <body>

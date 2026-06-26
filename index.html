@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNXT3T16XE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JNXT3T16XE');
+    document.addEventListener('DOMContentLoaded', function(){
+      document.querySelectorAll('a[href="tel:0602113846"]').forEach(function(l){
+        l.addEventListener('click', function(){
+          gtag('event','phone_call',{'event_category':'Contact','event_label':'0602113846','value':1});
+        });
+      });
+    });
+  </script>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" href="favicon.png" />
@@ -536,7 +551,7 @@
   </div>
 </section>
 
-<!-- CTA FINAL -->
+<!-- BLOG -->
 <section style="background:var(--blanc);padding:64px 24px;">
   <div style="max-width:1000px;margin:0 auto;">
     <h2 class="section-title">Nos <span>conseils serrurerie</span></h2>
