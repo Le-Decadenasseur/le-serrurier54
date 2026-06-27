@@ -1,21 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNXT3T16XE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-JNXT3T16XE');
-    document.addEventListener('DOMContentLoaded', function(){
-      document.querySelectorAll('a[href="tel:0602113846"]').forEach(function(l){
-        l.addEventListener('click', function(){
-          gtag('event','phone_call',{'event_category':'Contact','event_label':'0602113846','value':1});
-        });
-      });
-    });
-  </script>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" href="favicon.png" />
@@ -383,14 +368,37 @@
     <a href="serrurier-toul.html">Toul</a>
     <a href="serrurier-luneville.html">Lunéville</a>
     <a href="serrurier-pont-a-mousson.html">Pont-à-Mousson</a>
-    <a href="serrurier-vandoeuvre.html">Vandœuvre</a><a href="/FAQ.html">FAQ</a>
+    <a href="serrurier-vandoeuvre.html">Vandœuvre</a>
     <a href="tel:0602113846" class="nav-tel">✆ 06 02 11 38 46</a>
   </div>
 </nav>
 
 <header class="hero">
   <p style="font-family:Arial,sans-serif;font-size:1.1rem;font-weight:900;color:#ffffff;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;">Artisan Local</p>
-  <img src="data:image/png;base64,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" alt="Logo Le Serrurier 54" style="height:100px;width:auto;margin-bottom:20px;display:block;margin-left:auto;margin-right:auto;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 80" style="height:120px;width:auto;margin-bottom:20px;display:block;margin-left:auto;margin-right:auto;" alt="Logo Le Serrurier 54">
+  <rect x="42" y="35" width="100" height="10" rx="2" fill="white" stroke="white" stroke-width="1"/>
+  <rect x="118" y="44" width="5" height="9" rx="1" fill="white" stroke="white" stroke-width="1"/>
+  <rect x="132" y="44" width="5" height="7" rx="1" fill="white" stroke="white" stroke-width="1"/>
+  <circle cx="36" cy="40" r="20" fill="white" stroke="white" stroke-width="1"/>
+  <circle cx="36" cy="40" r="8" fill="#0C1B2E" stroke="#0C1B2E" stroke-width="1"/>
+  <line x1="16" y1="40" x2="56" y2="40" stroke="white" stroke-width="1.5"/>
+  <circle cx="36" cy="40" r="3" fill="#E64D3B"/>
+  <line x1="36" y1="16" x2="36" y2="20" stroke="white" stroke-width="2.5"/>
+  <circle cx="36" cy="14" r="3" fill="white"/>
+  <line x1="36" y1="60" x2="36" y2="64" stroke="white" stroke-width="2.5"/>
+  <circle cx="36" cy="66" r="3" fill="white"/>
+  <line x1="12" y1="40" x2="16" y2="40" stroke="white" stroke-width="2.5"/>
+  <circle cx="10" cy="40" r="3" fill="white"/>
+  <line x1="16" y1="20" x2="19" y2="24" stroke="white" stroke-width="2.5"/>
+  <circle cx="14" cy="18" r="3" fill="white"/>
+  <line x1="16" y1="60" x2="19" y2="56" stroke="white" stroke-width="2.5"/>
+  <circle cx="14" cy="62" r="3" fill="white"/>
+  <line x1="56" y1="20" x2="53" y2="24" stroke="white" stroke-width="2.5"/>
+  <circle cx="58" cy="18" r="3" fill="white"/>
+  <line x1="56" y1="60" x2="53" y2="56" stroke="white" stroke-width="2.5"/>
+  <circle cx="58" cy="62" r="3" fill="white"/>
+  <text x="98" y="44" font-family="Arial Black, Arial" font-weight="900" font-size="9" fill="#0C1B2E" text-anchor="middle" letter-spacing="0.3"><tspan fill="#E64D3B">LE</tspan> SERRURIER</text>
+</svg>
   <div class="hero-badge">📍 Meurthe-et-Moselle (54) — Toul · Nancy · Lunéville</div>
   <h1>Votre serrurier de <em>confiance</em>,<br>disponible quand vous en avez besoin</h1>
   <p class="hero-sub">Porte claquée, clé perdue, serrure bloquée — on arrive vite, on travaille bien, et on vous explique tout avant de commencer.</p>
@@ -551,7 +559,7 @@
   </div>
 </section>
 
-<!-- BLOG -->
+<!-- CTA FINAL -->
 <section style="background:var(--blanc);padding:64px 24px;">
   <div style="max-width:1000px;margin:0 auto;">
     <h2 class="section-title">Nos <span>conseils serrurerie</span></h2>
