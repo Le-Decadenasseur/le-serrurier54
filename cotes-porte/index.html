@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#0C1B2E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+<title>Cotes Portes – Le Serrurier 54</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { font-family: Arial, sans-serif; background: #0C1B2E; color: #fff; min-height: 100vh; }
+
+  .header {
+    background: #0C1B2E;
+    padding: 16px 20px 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 3px solid #E64D3B;
+  }
+  .logo { font-size: 22px; font-weight: 900; }
+  .logo span { color: #E64D3B; }
+  .header-sub { font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+
+  .tabs {
+    display: flex;
+    background: #0a1525;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .tab {
+    flex: 1;
+    padding: 14px 8px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.45);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .tab.active { color: #fff; border-bottom-color: #E64D3B; }
+
+  .page { display: none; padding: 20px 16px; }
+  .page.active { display: block; }
+
+  .section-title {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    margin-top: 4px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .field-group { margin-bottom: 14px; }
+  .field-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .field-badge {
+    background: #E64D3B;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 10px;
+  }
+  .field-badge.gray { background: rgba(255,255,255,0.2); }
+
+  input[type=number], input[type=text], select, textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 16px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    -webkit-appearance: none;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus { border-color: #E64D3B; }
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.3); }
+  select option { background: #0C1B2E; color: #fff; }
+
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+  .unit {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .unit input { border-radius: 8px 0 0 8px; }
+  .unit-label {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    white-space: nowrap;
+  }
+
+  .btn-calc {
+    width: 100%;
+    background: #E64D3B;
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+  .btn-calc:active { opacity: 0.85; }
+
+  .btn-reset {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    margin-top: 8px;
+  }
+
+  .result {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 16px;
+    display: none;
+  }
+  .result.visible { display: block; }
+
+  .result-title {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 14px;
+  }
+  .result-row:last-child { border-bottom: none; }
+  .result-row .label { color: rgba(255,255,255,0.6); }
+  .result-row .value { font-weight: 700; color: #fff; }
+  .result-row .value.accent { color: #E64D3B; font-size: 16px; }
+  .result-row .value.ok { color: #4CAF50; }
+  .result-row .value.warn { color: #FF9800; }
+
+  .result-porte {
+    background: #E64D3B;
+    border-radius: 10px;
+    padding: 14px;
+    margin-top: 12px;
+    text-align: center;
+  }
+  .result-porte .title { font-size: 11px; opacity: 0.85; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.1em; }
+  .result-porte .dims { font-size: 20px; font-weight: 900; letter-spacing: 0.05em; }
+
+  .info-box {
+    background: rgba(230,77,59,0.12);
+    border: 1px solid rgba(230,77,59,0.3);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+    margin-top: 12px;
+  }
+  .info-box strong { color: #E64D3B; }
+
+  .client-section { margin-bottom: 20px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="logo"><span>LE</span> SERRURIER 54</div>
+    <div class="header-sub">Relevé de cotes portes</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('simple')">Porte simple</div>
+  <div class="tab" onclick="showTab('double')">Battant fixe</div>
+  <div class="tab" onclick="showTab('fiche')">Fiche client</div>
+</div>
+
+<!-- PAGE 1 : PORTE SIMPLE -->
+<div class="page active" id="page-simple">
+
+  <div class="card" style="margin-top:16px;">
+    <div class="section-title">Mesures du tableau</div>
+
+    <div class="field-group">
+      <div class="field-label">
+        Hauteur du tableau
+        <span class="field-badge">3 points</span>
+      </div>
+      <div class="row-3">
+        <div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Gauche</div>
+          <div class="unit"><input type="number" id="h1g" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Milieu</div>
+          <div class="unit"><input type="number" id="h1m" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Droite</div>
+          <div class="unit"><input type="number" id="h1d" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">
+        Largeur du tableau
+        <span class="field-badge">3 points</span>
+      </div>
+      <div class="row-3">
+        <div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Haut</div>
+          <div class="unit"><input type="number" id="l1h" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Milieu</div>
+          <div class="unit"><input type="number" id="l1m" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Bas</div>
+          <div class="unit"><input type="number" id="l1b" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-2">
+      <div class="field-group">
+        <div class="field-label">Épaisseur cloison</div>
+        <div class="unit"><input type="number" id="e1" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+      </div>
+      <div class="field-group">
+        <div class="field-label">Sens ouverture</div>
+        <select id="sens1">
+          <option value="">—</option>
+          <option value="Gauche">Gauche</option>
+          <option value="Droite">Droite</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Jeu à appliquer</div>
+      <select id="jeu1">
+        <option value="10">Standard — 10 mm</option>
+        <option value="15">Large — 15 mm</option>
+        <option value="5">Serré — 5 mm</option>
+      </select>
+    </div>
+
+    <button class="btn-calc" onclick="calc1()">Calculer les cotes</button>
+    <button class="btn-reset" onclick="reset1()">Effacer</button>
+  </div>
+
+  <div class="result" id="res1">
+    <div class="result-title">Résultats</div>
+    <div class="result-row">
+      <span class="label">Hauteur retenue (min)</span>
+      <span class="value accent" id="r1h">—</span>
+    </div>
+    <div class="result-row">
+      <span class="label">Largeur retenue (min)</span>
+      <span class="value accent" id="r1l">—</span>
+    </div>
+    <div class="result-row">
+      <span class="label">Épaisseur cloison</span>
+      <span class="value" id="r1e">—</span>
+    </div>
+    <div class="result-row">
+      <span class="label">Sens ouverture</span>
+      <span class="value" id="r1s">—</span>
+    </div>
+    <div class="result-porte">
+      <div class="title">Porte à commander</div>
+      <div class="dims" id="r1dim">— × —</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>Rappel :</strong> Toujours retenir la <strong>plus petite valeur</strong> des 3 mesures · Vérifier la verticalité au niveau à bulle · Standard France : H 204 × L 83 ou 93 cm
+  </div>
+</div>
+
+<!-- PAGE 2 : BATTANT FIXE -->
+<div class="page" id="page-double">
+
+  <div class="card" style="margin-top:16px;">
+    <div class="section-title">Mesures du tableau</div>
+
+    <div class="field-group">
+      <div class="field-label">
+        Hauteur du tableau
+        <span class="field-badge">3 points</span>
+      </div>
+      <div class="row-3">
+        <div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Gauche</div>
+          <div class="unit"><input type="number" id="h2g" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Milieu</div>
+          <div class="unit"><input type="number" id="h2m" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px;">Droite</div>
+          <div class="unit"><input type="number" id="h2d" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Largeur totale du tableau</div>
+      <div class="unit"><input type="number" id="lt2" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+    </div>
+
+    <div class="row-2">
+      <div class="field-group">
+        <div class="field-label">
+          Largeur partie fixe
+          <span class="field-badge gray">fixe</span>
+        </div>
+        <div class="unit"><input type="number" id="lf2" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+      </div>
+      <div class="field-group">
+        <div class="field-label">
+          Largeur ouvrant
+          <span class="field-badge">ouvrant</span>
+        </div>
+        <div class="unit"><input type="number" id="lo2" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+      </div>
+    </div>
+
+    <div class="row-2">
+      <div class="field-group">
+        <div class="field-label">Épaisseur cloison</div>
+        <div class="unit"><input type="number" id="e2" placeholder="mm" inputmode="numeric"><span class="unit-label">mm</span></div>
+      </div>
+      <div class="field-group">
+        <div class="field-label">Sens ouverture</div>
+        <select id="sens2">
+          <option value="">—</option>
+          <option value="Gauche">Gauche</option>
+          <option value="Droite">Droite</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Jeu à appliquer</div>
+      <select id="jeu2">
+        <option value="10">Standard — 10 mm</option>
+        <option value="15">Large — 15 mm</option>
+        <option value="5">Serré — 5 mm</option>
+      </select>
+    </div>
+
+    <button class="btn-calc" onclick="calc2()">Calculer les cotes</button>
+    <button class="btn-reset" onclick="reset2()">Effacer</button>
+  </div>
+
+  <div class="result" id="res2">
+    <div class="result-title">Résultats</div>
+    <div class="result-row">
+      <span class="label">Hauteur retenue (min)</span>
+      <span class="value accent" id="r2h">—</span>
+    </div>
+    <div class="result-row">
+      <span class="label">Largeur totale</span>
+      <span class="value" id="r2lt">—</span>
+    </div>
+    <div class="result-row">
+      <span class="label">Largeur fixe</span>
+      <span class="value" id="r2lf">—</span>
+    </div>
+    <div class="result-row">
+      <span class="label">Largeur ouvrant</span>
+      <span class="value accent" id="r2lo">—</span>
+    </div>
+    <div class="result-row">
+      <span class="label">Vérif. fixe + ouvrant</span>
+      <span class="value" id="r2verif">—</span>
+    </div>
+    <div class="result-row">
+      <span class="label">Épaisseur cloison</span>
+      <span class="value" id="r2e">—</span>
+    </div>
+    <div class="result-row">
+      <span class="label">Sens ouverture</span>
+      <span class="value" id="r2s">—</span>
+    </div>
+    <div class="result-porte">
+      <div class="title">Battant ouvrant à commander</div>
+      <div class="dims" id="r2dim">— × —</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>Rappel :</strong> Vérifier que <strong>fixe + ouvrant = largeur totale</strong> · Tolérance ±5mm · Commander uniquement le battant ouvrant avec les cotes réelles moins le jeu
+  </div>
+</div>
+
+<!-- PAGE 3 : FICHE CLIENT -->
+<div class="page" id="page-fiche">
+
+  <div class="card" style="margin-top:16px;">
+    <div class="section-title">Informations client</div>
+
+    <div class="field-group">
+      <div class="field-label">Nom du client</div>
+      <input type="text" id="f_client" placeholder="M. / Mme ...">
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Adresse d'intervention</div>
+      <input type="text" id="f_adresse" placeholder="N° rue, ville">
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Type de porte</div>
+      <select id="f_type">
+        <option value="Porte d'entrée appartement">Entrée appartement</option>
+        <option value="Porte d'entrée maison">Entrée maison</option>
+        <option value="Porte palière">Porte palière</option>
+        <option value="Porte de cave">Porte de cave</option>
+        <option value="Porte de garage">Porte de garage</option>
+      </select>
+    </div>
+
+    <div class="row-2">
+      <div class="field-group">
+        <div class="field-label">Marque actuelle</div>
+        <input type="text" id="f_marque" placeholder="Fichet, Bricard...">
+      </div>
+      <div class="field-group">
+        <div class="field-label">Date</div>
+        <input type="text" id="f_date" placeholder="JJ/MM/AAAA">
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Observations</div>
+      <textarea id="f_obs" placeholder="État de la porte, difficultés particulières..." rows="3" style="resize:none;"></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Cotes retenues</div>
+    <div id="fiche_recap" style="font-size:14px; line-height:2; color:rgba(255,255,255,0.8);">
+      Calculez d'abord vos cotes dans les onglets précédents.
+    </div>
+  </div>
+
+  <button class="btn-calc" onclick="genererFiche()">Générer la fiche</button>
+
+  <div class="result" id="fiche_result" style="margin-top:16px;">
+    <div class="result-title">Fiche générée</div>
+    <div id="fiche_content" style="font-size:13px; line-height:1.8; white-space:pre-wrap; color:rgba(255,255,255,0.85);"></div>
+  </div>
+</div>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(console.error);
+}
+
+// Auto date
+document.getElementById('f_date').value = new Date().toLocaleDateString('fr-FR');
+
+// Stockage des résultats calculés
+let resultats = { simple: null, double: null };
+
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const idx = ['simple','double','fiche'].indexOf(name);
+  document.querySelectorAll('.tab')[idx].classList.add('active');
+  document.getElementById('page-' + name).classList.add('active');
+  if (name === 'fiche') updateFicheRecap();
+}
+
+function getMin(...ids) {
+  const vals = ids.map(id => {
+    const v = parseFloat(document.getElementById(id).value);
+    return isNaN(v) ? null : v;
+  }).filter(v => v !== null);
+  return vals.length > 0 ? Math.min(...vals) : null;
+}
+
+function v(id) { const x = parseFloat(document.getElementById(id).value); return isNaN(x) ? null : x; }
+function sv(id) { return document.getElementById(id).value || null; }
+function fmt(n) { return n !== null ? n + ' mm' : '—'; }
+
+function calc1() {
+  const h = getMin('h1g','h1m','h1d');
+  const l = getMin('l1h','l1m','l1b');
+  const e = v('e1');
+  const sens = sv('sens1');
+  const jeu = parseInt(document.getElementById('jeu1').value);
+
+  document.getElementById('r1h').textContent = fmt(h);
+  document.getElementById('r1l').textContent = fmt(l);
+  document.getElementById('r1e').textContent = fmt(e);
+  document.getElementById('r1s').textContent = sens || '—';
+
+  if (h && l) {
+    const ph = h - jeu, pl = l - jeu;
+    document.getElementById('r1dim').textContent = 'H ' + ph + ' × L ' + pl + ' mm';
+    resultats.simple = { h, l, e, sens, ph, pl };
+  } else {
+    document.getElementById('r1dim').textContent = 'Données incomplètes';
+  }
+  document.getElementById('res1').classList.add('visible');
+}
+
+function calc2() {
+  const h = getMin('h2g','h2m','h2d');
+  const lt = v('lt2');
+  const lf = v('lf2');
+  const lo = v('lo2');
+  const e = v('e2');
+  const sens = sv('sens2');
+  const jeu = parseInt(document.getElementById('jeu2').value);
+
+  document.getElementById('r2h').textContent = fmt(h);
+  document.getElementById('r2lt').textContent = fmt(lt);
+  document.getElementById('r2lf').textContent = fmt(lf);
+  document.getElementById('r2lo').textContent = fmt(lo);
+  document.getElementById('r2e').textContent = fmt(e);
+  document.getElementById('r2s').textContent = sens || '—';
+
+  const verifEl = document.getElementById('r2verif');
+  if (lf && lo) {
+    const sum = lf + lo;
+    const ok = !lt || Math.abs(sum - lt) <= 20;
+    verifEl.textContent = sum + ' mm ' + (ok ? '✓' : '⚠ Vérifier');
+    verifEl.className = 'value ' + (ok ? 'ok' : 'warn');
+  } else {
+    verifEl.textContent = '—';
+    verifEl.className = 'value';
+  }
+
+  if (h && lo) {
+    const ph = h - jeu, pl = lo - jeu;
+    document.getElementById('r2dim').textContent = 'H ' + ph + ' × L ' + pl + ' mm';
+    resultats.double = { h, lt, lf, lo, e, sens, ph, pl };
+  } else {
+    document.getElementById('r2dim').textContent = 'Données incomplètes';
+  }
+  document.getElementById('res2').classList.add('visible');
+}
+
+function reset1() {
+  ['h1g','h1m','h1d','l1h','l1m','l1b','e1'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('sens1').value = '';
+  document.getElementById('res1').classList.remove('visible');
+  resultats.simple = null;
+}
+
+function reset2() {
+  ['h2g','h2m','h2d','lt2','lf2','lo2','e2'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('sens2').value = '';
+  document.getElementById('res2').classList.remove('visible');
+  resultats.double = null;
+}
+
+function updateFicheRecap() {
+  const el = document.getElementById('fiche_recap');
+  let html = '';
+  if (resultats.simple) {
+    const r = resultats.simple;
+    html += '<strong style="color:#E64D3B">Porte simple</strong>\n';
+    html += 'Tableau : H ' + r.h + ' × L ' + r.l + ' mm\n';
+    html += 'Porte à commander : H ' + r.ph + ' × L ' + r.pl + ' mm\n';
+    if (r.sens) html += 'Sens : ' + r.sens + '\n';
+    if (r.e) html += 'Épaisseur : ' + r.e + ' mm\n';
+    html += '\n';
+  }
+  if (resultats.double) {
+    const r = resultats.double;
+    html += '<strong style="color:#E64D3B">Porte avec fixe</strong>\n';
+    html += 'Tableau total : ' + (r.lt || '—') + ' mm\n';
+    html += 'Partie fixe : ' + r.lf + ' mm\n';
+    html += 'Ouvrant : H ' + r.h + ' × L ' + r.lo + ' mm\n';
+    html += 'À commander : H ' + r.ph + ' × L ' + r.pl + ' mm\n';
+    if (r.sens) html += 'Sens : ' + r.sens + '\n';
+    if (r.e) html += 'Épaisseur : ' + r.e + ' mm\n';
+  }
+  if (!html) html = 'Calculez d\'abord vos cotes dans les onglets précédents.';
+  el.innerHTML = html;
+}
+
+function genererFiche() {
+  const client = document.getElementById('f_client').value || 'Client';
+  const adresse = document.getElementById('f_adresse').value || '—';
+  const type = document.getElementById('f_type').value;
+  const marque = document.getElementById('f_marque').value;
+  const date = document.getElementById('f_date').value;
+  const obs = document.getElementById('f_obs').value;
+
+  let txt = '═══════════════════════════\n';
+  txt += '     LE SERRURIER 54\n';
+  txt += '     06 02 11 38 46\n';
+  txt += '═══════════════════════════\n\n';
+  txt += 'RELEVÉ DE COTES — ' + date + '\n\n';
+  txt += 'Client : ' + client + '\n';
+  txt += 'Adresse : ' + adresse + '\n';
+  txt += 'Type de porte : ' + type + '\n';
+  if (marque) txt += 'Marque actuelle : ' + marque + '\n';
+  txt += '\n───────────────────────────\n';
+
+  if (resultats.simple) {
+    const r = resultats.simple;
+    txt += 'PORTE SIMPLE BATTANT\n';
+    txt += '───────────────────────────\n';
+    txt += 'Tableau : H ' + r.h + ' × L ' + r.l + ' mm\n';
+    txt += 'Épaisseur cloison : ' + (r.e || '—') + ' mm\n';
+    txt += 'Sens ouverture : ' + (r.sens || '—') + '\n';
+    txt += '\n→ PORTE À COMMANDER :\n';
+    txt += '  H ' + r.ph + ' mm × L ' + r.pl + ' mm\n\n';
+  }
+
+  if (resultats.double) {
+    const r = resultats.double;
+    txt += 'PORTE AVEC BATTANT FIXE\n';
+    txt += '───────────────────────────\n';
+    txt += 'Largeur totale tableau : ' + (r.lt || '—') + ' mm\n';
+    txt += 'Partie fixe : ' + r.lf + ' mm\n';
+    txt += 'Partie ouvrant : ' + r.lo + ' mm\n';
+    txt += 'Hauteur tableau : ' + r.h + ' mm\n';
+    txt += 'Épaisseur cloison : ' + (r.e || '—') + ' mm\n';
+    txt += 'Sens ouverture : ' + (r.sens || '—') + '\n';
+    txt += '\n→ OUVRANT À COMMANDER :\n';
+    txt += '  H ' + r.ph + ' mm × L ' + r.pl + ' mm\n\n';
+  }
+
+  if (obs) {
+    txt += '───────────────────────────\n';
+    txt += 'Observations :\n' + obs + '\n\n';
+  }
+
+  txt += '═══════════════════════════\n';
+  txt += 'le-serrurier54.fr\n';
+
+  document.getElementById('fiche_content').textContent = txt;
+  document.getElementById('fiche_result').classList.add('visible');
+}
+</script>
+</body>
+</html>
