@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Coup d'Œil — Estimation d'objets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#161A2E;
+    --ink-2:#20263F;
+    --paper:#EFE7D6;
+    --paper-2:#E4DAC3;
+    --brass:#B8923D;
+    --brass-light:#D6B563;
+    --verdigris:#5C7A6E;
+    --rust:#A94438;
+    --text-on-paper:#241F16;
+    --text-on-ink:#EFE7D6;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text-on-ink);
+    font-family:'Inter',sans-serif;
+    overflow:hidden;
+    min-height:100dvh;
+  }
+  #app{
+    position:relative;
+    height:100dvh;
+    width:100vw;
+    max-width:560px;
+    margin:0 auto;
+    background:var(--ink);
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* Header */
+  header{
+    padding:calc(env(safe-area-inset-top,0px) + 18px) 22px 12px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    z-index:5;
+  }
+  .brand{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:22px;
+    letter-spacing:0.02em;
+  }
+  .brand em{
+    font-style:italic;
+    color:var(--brass-light);
+    font-weight:400;
+  }
+  .tagline{
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--brass-light);
+    opacity:0.75;
+  }
+
+  /* Camera stage */
+  #stage{
+    position:relative;
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  video, #captured-img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  #captured-img{display:none;}
+
+  /* Loupe viewfinder mask */
+  #loupe-mask{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+    background:
+      radial-gradient(circle at 50% 46%, transparent 0, transparent 132px, rgba(22,26,46,0.88) 133px);
+  }
+  #loupe-ring{
+    position:absolute;
+    left:50%; top:46%;
+    width:266px; height:266px;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    border:2px solid var(--brass-light);
+    box-shadow:0 0 0 1px rgba(22,26,46,0.4), 0 0 24px rgba(0,0,0,0.35);
+    z-index:3;
+    pointer-events:none;
+  }
+  .tick{
+    position:absolute;
+    left:50%; top:46%;
+    width:1px; height:10px;
+    background:var(--brass-light);
+    opacity:0.85;
+    transform-origin:0 133px;
+  }
+  #hint{
+    position:absolute;
+    left:50%; bottom:calc(46% - 170px);
+    transform:translateX(-50%);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--brass-light);
+    z-index:3;
+    text-align:center;
+    opacity:0.9;
+  }
+  #status-msg{
+    position:absolute;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    z-index:4;
+    text-align:center;
+    padding:0 30px;
+    font-size:14px;
+    color:var(--text-on-ink);
+    line-height:1.5;
+  }
+
+  /* Controls */
+  #controls{
+    position:relative;
+    z-index:5;
+    padding:22px 0 calc(env(safe-area-inset-bottom,0px) + 26px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:34px;
+  }
+  #shutter{
+    width:76px; height:76px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--brass-light), var(--brass) 60%, #8f6f28 100%);
+    border:3px solid var(--paper);
+    box-shadow:0 4px 18px rgba(0,0,0,0.45);
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:transform 0.12s ease;
+  }
+  #shutter:active{transform:scale(0.92);}
+  #shutter:disabled{opacity:0.4; cursor:default;}
+  #shutter svg{width:26px;height:26px;}
+
+  #retake{
+    position:absolute;
+    left:24px;
+    width:44px; height:44px;
+    border-radius:50%;
+    background:rgba(239,231,214,0.12);
+    border:1px solid rgba(239,231,214,0.3);
+    display:none;
+    align-items:center; justify-content:center;
+    cursor:pointer;
+  }
+  #retake svg{width:18px;height:18px;stroke:var(--paper);}
+
+  /* Result sheet — "fiche d'expertise" */
+  #sheet{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    max-height:78%;
+    background:var(--paper);
+    color:var(--text-on-ink);
+    border-radius:20px 20px 0 0;
+    transform:translateY(100%);
+    transition:transform 0.42s cubic-bezier(.22,.9,.32,1);
+    z-index:10;
+    box-shadow:0 -8px 30px rgba(0,0,0,0.45);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  #sheet.open{transform:translateY(0);}
+  #sheet-scroll{
+    overflow-y:auto;
+    padding:20px 26px calc(env(safe-area-inset-bottom,0px) + 22px);
+  }
+  .sheet-handle{
+    width:36px; height:4px;
+    background:var(--brass);
+    opacity:0.5;
+    border-radius:3px;
+    margin:10px auto 4px;
+  }
+  .sheet-eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--verdigris);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:6px 0 10px;
+  }
+  .sheet-eyebrow::before, .sheet-eyebrow::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:var(--brass);
+    opacity:0.4;
+  }
+  #obj-name{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:26px;
+    color:var(--text-on-paper);
+    margin:0 0 4px;
+    line-height:1.15;
+  }
+  #obj-category{
+    font-size:12px;
+    color:var(--verdigris);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:16px;
+  }
+  #obj-desc{
+    font-size:14.5px;
+    line-height:1.65;
+    color:var(--text-on-paper);
+    margin-bottom:20px;
+  }
+  .value-block{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:12px;
+    padding:16px 18px;
+    margin-bottom:16px;
+  }
+  .value-label{
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--brass-light);
+    margin-bottom:6px;
+  }
+  #obj-value{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:600;
+    font-size:22px;
+    color:var(--paper);
+  }
+  .confidence-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:10px;
+    font-size:11px;
+    color:var(--brass-light);
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:rgba(239,231,214,0.25);}
+  .dot.filled{background:var(--brass-light);}
+  #obj-remark{
+    font-size:12.5px;
+    line-height:1.6;
+    color:var(--text-on-paper);
+    opacity:0.75;
+    border-top:1px dashed var(--brass);
+    padding-top:14px;
+    margin-bottom:18px;
+  }
+  #new-photo-btn{
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:none;
+    background:var(--verdigris);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:0.02em;
+    cursor:pointer;
+  }
+  #new-photo-btn:active{opacity:0.85;}
+
+  .spinner{
+    width:34px; height:34px;
+    border-radius:50%;
+    border:2.5px solid rgba(239,231,214,0.25);
+    border-top-color:var(--brass-light);
+    animation:spin 0.9s linear infinite;
+    margin:0 auto 14px;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  #error-box{
+    display:none;
+    padding:12px 16px;
+    background:rgba(169,68,56,0.15);
+    border:1px solid var(--rust);
+    border-radius:10px;
+    font-size:13px;
+    line-height:1.5;
+    color:#F3D6D2;
+    margin-bottom:16px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    #sheet, #shutter{transition:none;}
+    .spinner{animation:none;}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header>
+    <div>
+      <div class="brand">Coup d'<em>Œil</em></div>
+      <div class="tagline">Identification &amp; estimation</div>
+    </div>
+  </header>
+
+  <div id="stage">
+    <video id="video" autoplay playsinline muted></video>
+    <img id="captured-img" alt="Photo capturée">
+    <div id="loupe-mask"></div>
+    <div id="loupe-ring"></div>
+    <div id="hint">Centrez l'objet dans le viseur</div>
+    <div id="status-msg"></div>
+  </div>
+
+  <div id="controls">
+    <button id="retake" aria-label="Reprendre une photo">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+    </button>
+    <button id="shutter" aria-label="Prendre la photo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#161A2E" stroke-width="2"><circle cx="12" cy="12" r="7"/></svg>
+    </button>
+  </div>
+
+  <canvas id="canvas" style="display:none;"></canvas>
+
+  <div id="sheet">
+    <div class="sheet-handle"></div>
+    <div id="sheet-scroll">
+      <div id="error-box"></div>
+      <div id="loading-box" style="display:none; text-align:center; padding:30px 0;">
+        <div class="spinner"></div>
+        <div style="font-size:13px; color:var(--verdigris);">Analyse en cours…</div>
+      </div>
+      <div id="result-box" style="display:none;">
+        <div class="sheet-eyebrow">Fiche d'expertise</div>
+        <div id="obj-name"></div>
+        <div id="obj-category"></div>
+        <div id="obj-desc"></div>
+        <div class="value-block">
+          <div class="value-label">Valeur estimée</div>
+          <div id="obj-value"></div>
+          <div class="confidence-row">
+            <span>Confiance :</span>
+            <span id="confidence-dots"></span>
+            <span id="confidence-label"></span>
+          </div>
+        </div>
+        <div id="obj-remark"></div>
+        <button id="new-photo-btn">Nouvelle photo</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const video = document.getElementById('video');
+const capturedImg = document.getElementById('captured-img');
+const canvas = document.getElementById('canvas');
+const shutter = document.getElementById('shutter');
+const retake = document.getElementById('retake');
+const sheet = document.getElementById('sheet');
+const statusMsg = document.getElementById('status-msg');
+const errorBox = document.getElementById('error-box');
+const loadingBox = document.getElementById('loading-box');
+const resultBox = document.getElementById('result-box');
+const loupeMask = document.getElementById('loupe-mask');
+const loupeRing = document.getElementById('loupe-ring');
+const hint = document.getElementById('hint');
+
+let stream = null;
+
+// Draw tick marks around the loupe ring
+(function drawTicks(){
+  const stage = document.getElementById('stage');
+  for(let i=0;i<24;i++){
+    const t = document.createElement('div');
+    t.className='tick';
+    t.style.transform = `translate(-50%,0) rotate(${i*15}deg)`;
+    if(i%6===0){ t.style.height='16px'; t.style.opacity='1'; }
+    stage.appendChild(t);
+  }
+})();
+
+async function startCamera(){
+  try{
+    stream = await navigator.mediaDevices.getUserMedia({
+      video:{ facingMode:'environment', width:{ideal:1280}, height:{ideal:1280} },
+      audio:false
+    });
+    video.srcObject = stream;
+    statusMsg.textContent = '';
+  }catch(err){
+    statusMsg.innerHTML = "Impossible d'accéder à la caméra.<br>Vérifiez les autorisations dans les réglages du navigateur.";
+  }
+}
+startCamera();
+
+shutter.addEventListener('click', capturePhoto);
+retake.addEventListener('click', resetToCamera);
+document.getElementById('new-photo-btn').addEventListener('click', resetToCamera);
+
+function capturePhoto(){
+  if(!video.videoWidth) return;
+  const size = Math.min(video.videoWidth, video.videoHeight);
+  canvas.width = 900; canvas.height = 900;
+  const sx = (video.videoWidth-size)/2, sy=(video.videoHeight-size)/2;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(video, sx, sy, size, size, 0, 0, 900, 900);
+  const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+
+  capturedImg.src = dataUrl;
+  capturedImg.style.display='block';
+  video.style.display='none';
+  loupeMask.style.display='none';
+  loupeRing.style.display='none';
+  hint.style.display='none';
+  retake.style.display='flex';
+  shutter.disabled = true;
+
+  openSheet();
+  analyzeImage(dataUrl);
+}
+
+function resetToCamera(){
+  capturedImg.style.display='none';
+  video.style.display='block';
+  loupeMask.style.display='block';
+  loupeRing.style.display='block';
+  hint.style.display='block';
+  retake.style.display='none';
+  shutter.disabled = false;
+  closeSheet();
+}
+
+function openSheet(){ sheet.classList.add('open'); }
+function closeSheet(){ sheet.classList.remove('open'); }
+
+async function analyzeImage(dataUrl){
+  errorBox.style.display='none';
+  resultBox.style.display='none';
+  loadingBox.style.display='block';
+
+  const base64Data = dataUrl.split(',')[1];
+
+  const systemPrompt = `Tu es un expert en identification d'objets (antiquaire, brocanteur, évaluateur généraliste). On te montre une photo d'un objet. Identifie-le, décris-le et donne une estimation de valeur de revente indicative sur le marché français de l'occasion (brocante, petites annonces, enchères). Utilise la recherche web si cela aide à affiner l'estimation pour des objets spécifiques (marque, modèle, édition). Reste honnête : si l'objet est trop commun ou trop incertain pour une vraie estimation, dis-le dans la remarque plutôt que d'inventer un chiffre.
+
+Réponds UNIQUEMENT avec un objet JSON valide, sans aucun texte avant ou après, sans balises markdown, au format exact suivant :
+{"nom":"...","categorie":"...","description":"...","valeur_estimee":"...","confiance":"faible|moyenne|élevée","remarque":"..."}
+
+- "nom": nom court de l'objet (3-6 mots)
+- "categorie": catégorie générale (ex: Mobilier, Bijouterie, Électroménager, Outillage, Vaisselle, Jouet, Livre...)
+- "description": 2-3 phrases décrivant l'objet, son état apparent, son époque ou style probable
+- "valeur_estimee": fourchette en euros (ex: "15 € – 30 €") ou "Non estimable" si impossible
+- "confiance": niveau de confiance dans l'estimation
+- "remarque": une précision utile ou une mise en garde (ex: nécessite expertise physique pour confirmation, valeur très variable selon état, etc.)`;
+
+  try{
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify({
+        model:"claude-sonnet-4-6",
+        max_tokens:1000,
+        system: systemPrompt,
+        messages:[
+          {
+            role:"user",
+            content:[
+              { type:"image", source:{ type:"base64", media_type:"image/jpeg", data: base64Data } },
+              { type:"text", text:"Identifie cet objet et estime sa valeur." }
+            ]
+          }
+        ],
+        tools:[ { type:"web_search_20250305", name:"web_search" } ]
+      })
+    });
+
+    if(!response.ok){
+      throw new Error("Erreur API : " + response.status);
+    }
+
+    const data = await response.json();
+
+    const textBlocks = (data.content || [])
+      .filter(b => b.type === "text")
+      .map(b => b.text)
+      .join("\n")
+      .trim();
+
+    if(!textBlocks){
+      throw new Error("Réponse vide du modèle.");
+    }
+
+    const cleaned = textBlocks.replace(/```json/g,'').replace(/```/g,'').trim();
+    const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
+    if(!jsonMatch){
+      throw new Error("Format de réponse inattendu.");
+    }
+    const parsed = JSON.parse(jsonMatch[0]);
+
+    renderResult(parsed);
+
+  }catch(err){
+    loadingBox.style.display='none';
+    errorBox.style.display='block';
+    errorBox.textContent = "Analyse impossible : " + err.message + ". Réessayez avec une nouvelle photo.";
+  }
+}
+
+function renderResult(r){
+  loadingBox.style.display='none';
+  resultBox.style.display='block';
+
+  document.getElementById('obj-name').textContent = r.nom || 'Objet non identifié';
+  document.getElementById('obj-category').textContent = r.categorie || '';
+  document.getElementById('obj-desc').textContent = r.description || '';
+  document.getElementById('obj-value').textContent = r.valeur_estimee || 'Non estimable';
+  document.getElementById('obj-remark').textContent = r.remarque || '';
+
+  const confMap = {'faible':1,'moyenne':2,'élevée':3};
+  const level = confMap[(r.confiance||'').toLowerCase()] || 1;
+  const dotsWrap = document.getElementById('confidence-dots');
+  dotsWrap.innerHTML='';
+  for(let i=1;i<=3;i++){
+    const d = document.createElement('span');
+    d.className = 'dot' + (i<=level ? ' filled':'');
+    dotsWrap.appendChild(d);
+  }
+  document.getElementById('confidence-label').textContent = r.confiance || '';
+}
+</script>
+</body>
+</html>
