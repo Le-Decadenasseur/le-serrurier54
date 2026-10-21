@@ -25,7 +25,7 @@
   <meta property="og:locale" content="fr_FR" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --noir: #1a2e4a;
@@ -185,7 +185,7 @@
     }
     .ville-icon { font-size: 2.5rem; margin-bottom: 14px; display: block; }
     .ville-card h3 {
-      font-family: 'Playfair Display', serif;
+      font-family: Arial, sans-serif;
       font-size: 1.4rem;
       font-weight: 700;
       margin-bottom: 10px;
@@ -220,7 +220,7 @@
     }
     .service-card:hover { border-color: var(--or); transform: translateY(-3px); }
     .service-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
-    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .service-card h3 { font-family: Arial, sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
     .service-card p { font-size: 0.93rem; color: var(--gris); line-height: 1.7; }
     .service-tag {
       display: inline-block;
@@ -241,7 +241,7 @@
       text-align: center;
     }
     .urgence h2 {
-      font-family: 'Playfair Display', serif;
+      font-family: Arial, sans-serif;
       font-size: clamp(1.8rem, 5vw, 3rem);
       font-weight: 900;
       margin-bottom: 16px;
@@ -284,7 +284,7 @@
     .faq-inner { max-width: 760px; margin: 0 auto; }
     .faq-item { border-bottom: 1.5px solid #e8e3d8; padding: 22px 0; }
     .faq-item:last-child { border-bottom: none; }
-    .faq-q { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .faq-q { font-family: Arial, sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
     .faq-a { font-size: 0.98rem; color: var(--gris); line-height: 1.75; }
 
     /* CTA FINAL */
@@ -316,14 +316,14 @@
       display: none;
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: var(--or);
+      background: #e63030;
       padding: 14px 16px;
       text-align: center;
       z-index: 100;
       white-space: nowrap;
       overflow: hidden;
     }
-    .sticky-cta a { color: var(--noir); font-weight: 700; font-size: 0.9rem; text-decoration: none; white-space: nowrap; }
+    .sticky-cta a { color: #ffffff; font-weight: 700; font-size: 0.9rem; text-decoration: none; white-space: nowrap; }
     @media (max-width: 600px) {
       .sticky-cta { display: block; }
       body { padding-bottom: 60px; }
@@ -349,6 +349,17 @@
       .avis { padding: 40px 16px; }
       .faq { padding: 40px 16px; }
     }
+
+    /* Icônes */
+    .ico { width: 1.1em; height: 1.1em; vertical-align: -0.17em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .service-icon svg { width: 34px; height: 34px; color: #e63030; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    /* Villes */
+    .ville-card { padding: 28px; }
+    .villes-grid { grid-template-columns: repeat(2, 1fr); }
+    .villes-sub { font-family: Arial, sans-serif; font-size: 1.1rem; font-weight: 700; text-align: center; margin: 40px 0 16px; }
+    .villes-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .ville-chip { background: var(--blanc); border: 1.5px solid #e8e3d8; border-radius: 30px; padding: 10px 18px; font-weight: 600; font-size: 0.92rem; color: var(--noir); text-decoration: none; transition: border-color 0.2s; }
+    .ville-chip:hover { border-color: #e63030; }
   </style>
   <!-- Données structurées : fiche entreprise (un seul bloc) -->
   <script type="application/ld+json">
@@ -416,7 +427,7 @@
 
 <header class="hero">
   <p style="font-family:Arial,sans-serif;font-size:1.1rem;font-weight:900;color:#ffffff;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;">Artisan Local</p>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 80" role="img" aria-label="Logo Le Serrurier 54" style="height:120px;width:auto;margin-bottom:20px;display:block;margin-left:auto;margin-right:auto;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 80" role="img" aria-label="Logo Le Serrurier 54" style="height:96px;width:auto;margin-bottom:16px;display:block;margin-left:auto;margin-right:auto;">
   <rect x="42" y="35" width="100" height="10" rx="2" fill="white" stroke="white" stroke-width="1"/>
   <rect x="118" y="44" width="5" height="9" rx="1" fill="white" stroke="white" stroke-width="1"/>
   <rect x="132" y="44" width="5" height="7" rx="1" fill="white" stroke="white" stroke-width="1"/>
@@ -440,10 +451,10 @@
   <circle cx="58" cy="62" r="3" fill="white"/>
   <text x="98" y="44" font-family="Arial Black, Arial" font-weight="900" font-size="9" fill="#0C1B2E" text-anchor="middle" letter-spacing="0.3"><tspan fill="#E64D3B">LE</tspan> SERRURIER</text>
 </svg>
-  <div class="hero-badge">📍 Meurthe-et-Moselle (54) — Nancy · Toul · Lunéville</div>
+  <div class="hero-badge"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg> Meurthe-et-Moselle (54) — Nancy · Toul · Lunéville</div>
   <h1>Votre serrurier à <em>Nancy &amp; Toul</em>,<br>disponible 24h/7j en 20 minutes</h1>
   <p class="hero-sub">Porte claquée, clé perdue, serrure bloquée — on arrive vite, on travaille bien, et on vous explique tout avant de commencer. Porte claquée dès 90 €, porte verrouillée dès 110 €, déplacement inclus.</p>
-  <a href="tel:0602113846" class="hero-cta">📞 Appeler le 06 02 11 38 46</a>
+  <a href="tel:0602113846" class="hero-cta"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Appeler le 06 02 11 38 46</a>
   <div class="hero-stats">
     <div class="stat"><span class="stat-num">24h</span><span class="stat-label">Disponible</span></div>
     <div class="stat"><span class="stat-num">7j</span><span class="stat-label">Sur 7</span></div>
@@ -457,83 +468,37 @@
   <h2 class="section-title">Nos zones d'intervention <span>principales</span></h2>
   <div class="villes-grid">
     <a href="serrurier-nancy.html" class="ville-card">
-      <span class="ville-icon">🏙️</span>
       <h3>Serrurier Nancy</h3>
       <p>Intervention rapide dans Nancy et toute l'agglomération nancéienne, 24h/24 et 7j/7.</p>
-      <span class="ville-btn">Voir la page Nancy →</span>
+      <span class="ville-btn">Voir la page Nancy</span>
     </a>
     <a href="serrurier-toul.html" class="ville-card">
-      <span class="ville-icon">🏘️</span>
       <h3>Serrurier Toul</h3>
       <p>Dépannage serrurerie à Toul et ses communes environnantes. Disponible nuits et week-ends.</p>
-      <span class="ville-btn">Voir la page Toul →</span>
-    </a>
-    <a href="serrurier-laxou.html" class="ville-card">
-      <span class="ville-icon">🏠</span>
-      <h3>Serrurier Laxou</h3>
-      <p>Serrurier à Laxou, commune de la métropole du Grand Nancy. Intervention rapide.</p>
-      <span class="ville-btn">Voir la page Laxou →</span>
-    </a>
-    <a href="serrurier-maxeville.html" class="ville-card">
-      <span class="ville-icon">🏠</span>
-      <h3>Serrurier Maxéville</h3>
-      <p>Serrurier à Maxéville, commune nord de la métropole nancéienne. Disponible 24h/24.</p>
-      <span class="ville-btn">Voir la page Maxéville →</span>
-    </a>
-    <a href="serrurier-malzeville.html" class="ville-card">
-      <span class="ville-icon">🏠</span>
-      <h3>Serrurier Malzéville</h3>
-      <p>Serrurier à Malzéville, commune de la métropole du Grand Nancy. Intervention rapide.</p>
-      <span class="ville-btn">Voir la page Malzéville →</span>
-    </a>
-    <a href="serrurier-vandoeuvre.html" class="ville-card">
-      <span class="ville-icon">🏢</span>
-      <h3>Serrurier Vandœuvre-lès-Nancy</h3>
-      <p>Serrurier à Vandœuvre-lès-Nancy, Brabois, Technopôle. Intervention rapide.</p>
-      <span class="ville-btn">Voir la page Vandœuvre →</span>
-    </a>
-    <a href="serrurier-essey-les-nancy.html" class="ville-card">
-      <span class="ville-icon">🏠</span>
-      <h3>Serrurier Essey-lès-Nancy</h3>
-      <p>Serrurier à Essey-lès-Nancy, commune est de la métropole du Grand Nancy.</p>
-      <span class="ville-btn">Voir la page Essey →</span>
-    </a>
-    <a href="serrurier-jarville.html" class="ville-card">
-      <span class="ville-icon">🏠</span>
-      <h3>Serrurier Jarville</h3>
-      <p>Serrurier à Jarville-la-Malgrange. Intervention en urgence ou sur rendez-vous.</p>
-      <span class="ville-btn">Voir la page Jarville →</span>
-    </a>
-    <a href="serrurier-saint-max.html" class="ville-card">
-      <span class="ville-icon">🏠</span>
-      <h3>Serrurier Saint-Max</h3>
-      <p>Serrurier à Saint-Max, commune de la métropole du Grand Nancy. Disponible 24h/24.</p>
-      <span class="ville-btn">Voir la page Saint-Max →</span>
-    </a>
-    <a href="serrurier-tomblaine.html" class="ville-card">
-      <span class="ville-icon">🏠</span>
-      <h3>Serrurier Tomblaine</h3>
-      <p>Serrurier à Tomblaine, particuliers et entreprises. Intervention rapide.</p>
-      <span class="ville-btn">Voir la page Tomblaine →</span>
-    </a>
-    <a href="serrurier-villers-les-nancy.html" class="ville-card">
-      <span class="ville-icon">🏠</span>
-      <h3>Serrurier Villers-lès-Nancy</h3>
-      <p>Serrurier à Villers-lès-Nancy, commune résidentielle de la métropole nancéienne.</p>
-      <span class="ville-btn">Voir la page Villers →</span>
+      <span class="ville-btn">Voir la page Toul</span>
     </a>
     <a href="serrurier-luneville.html" class="ville-card">
-      <span class="ville-icon">🏰</span>
       <h3>Serrurier Lunéville</h3>
       <p>Serrurier à Lunéville et dans tout le secteur Est de la Meurthe-et-Moselle.</p>
-      <span class="ville-btn">Voir la page Lunéville →</span>
+      <span class="ville-btn">Voir la page Lunéville</span>
     </a>
     <a href="serrurier-pont-a-mousson.html" class="ville-card">
-      <span class="ville-icon">🌉</span>
       <h3>Serrurier Pont-à-Mousson</h3>
       <p>Intervention rapide à Pont-à-Mousson et dans toute la vallée de la Moselle.</p>
-      <span class="ville-btn">Voir la page Pont-à-Mousson →</span>
+      <span class="ville-btn">Voir la page Pont-à-Mousson</span>
     </a>
+  </div>
+  <h3 class="villes-sub">Dans le Grand Nancy</h3>
+  <div class="villes-chips">
+      <a href="serrurier-vandoeuvre.html" class="ville-chip">Vandœuvre-lès-Nancy</a>
+      <a href="serrurier-laxou.html" class="ville-chip">Laxou</a>
+      <a href="serrurier-maxeville.html" class="ville-chip">Maxéville</a>
+      <a href="serrurier-malzeville.html" class="ville-chip">Malzéville</a>
+      <a href="serrurier-essey-les-nancy.html" class="ville-chip">Essey-lès-Nancy</a>
+      <a href="serrurier-jarville.html" class="ville-chip">Jarville-la-Malgrange</a>
+      <a href="serrurier-saint-max.html" class="ville-chip">Saint-Max</a>
+      <a href="serrurier-tomblaine.html" class="ville-chip">Tomblaine</a>
+      <a href="serrurier-villers-les-nancy.html" class="ville-chip">Villers-lès-Nancy</a>
   </div>
 </section>
 
@@ -542,37 +507,37 @@
   <h2 class="section-title">Tous nos <span>services de serrurerie</span></h2>
   <div class="services-grid">
     <div class="service-card">
-      <span class="service-icon">🚪</span>
+      <span class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="1.5"/><circle cx="15" cy="12" r=".8"/><path d="M3 21h18"/></svg></span>
       <h3>Ouverture de porte</h3>
       <p>Porte claquée, clé perdue ou serrure bloquée — on intervient rapidement sans abîmer votre porte.</p>
       <span class="service-tag">Urgence 24h/24</span>
     </div>
     <div class="service-card">
-      <span class="service-icon">🔑</span>
+      <span class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7.5" cy="15.5" r="3.5"/><path d="M10 13l9-9M16 7l2.5 2.5M13.5 9.5L16 12"/></svg></span>
       <h3>Clé cassée</h3>
       <p>Extraction de clé cassée dans la serrure. Duplication et remplacement sur place si nécessaire.</p>
       <span class="service-tag">Intervention rapide</span>
     </div>
     <div class="service-card">
-      <span class="service-icon">⚙️</span>
+      <span class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="10.5" r="2"/><path d="M12 12.5v4"/></svg></span>
       <h3>Remplacement de cylindre</h3>
       <p>Changement de cylindre suite à une perte de clé, un cambriolage ou pour renforcer votre sécurité.</p>
       <span class="service-tag">Sécurité renforcée</span>
     </div>
     <div class="service-card">
-      <span class="service-icon">🔧</span>
+      <span class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/><circle cx="12" cy="16" r="1"/></svg></span>
       <h3>Changement &amp; réparation de serrure</h3>
       <p>Remplacement ou réparation de serrure défectueuse, abîmée ou ancienne. On intervient sur tous types de serrures, à domicile ou en urgence.</p>
       <span class="service-tag">Toutes marques</span>
     </div>
     <div class="service-card">
-      <span class="service-icon">🔒</span>
+      <span class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="11" height="4" rx="1"/><path d="M14 7l6 6"/><circle cx="20" cy="13.5" r="1.2"/><path d="M3 21V9"/></svg></span>
       <h3>Ferme-porte</h3>
       <p>Installation et réglage de ferme-portes pour copropriétés, commerces et particuliers.</p>
       <span class="service-tag">Pose &amp; réglage</span>
     </div>
     <div class="service-card">
-      <span class="service-icon">📱</span>
+      <span class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18.5h2"/></svg></span>
       <h3>Serrure connectée</h3>
       <p>Ouverture par smartphone, digicode ou badge. Conseil et pose sur mesure.</p>
       <span class="service-tag">Domotique</span>
@@ -590,7 +555,7 @@
     <div class="urgence-feat"><span class="dot"></span>Artisan qualifié et assuré</div>
     <div class="urgence-feat"><span class="dot"></span>50 km autour de Toul et Nancy</div>
   </div>
-  <a href="tel:0602113846" class="hero-cta">📞 06 02 11 38 46</a>
+  <a href="tel:0602113846" class="hero-cta"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> 06 02 11 38 46</a>
 </section>
 
 <!-- ZONE -->
@@ -716,7 +681,7 @@
 <section class="cta-final">
   <h2>Besoin d'un serrurier ?</h2>
   <p>On est là, disponibles maintenant. Devis gratuit avant toute intervention.</p>
-  <a href="tel:0602113846" class="cta-btn">📞 Appeler maintenant — 06 02 11 38 46</a>
+  <a href="tel:0602113846" class="cta-btn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Appeler maintenant — 06 02 11 38 46</a>
 </section>
 
 <footer>
@@ -727,7 +692,7 @@
 </footer>
 
 <div class="sticky-cta">
-  <a href="tel:0602113846">📞 Appeler maintenant — 06 02 11 38 46</a>
+  <a href="tel:0602113846"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg> Appeler maintenant — 06 02 11 38 46</a>
 </div>
 
 </body>
