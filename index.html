@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="apple-touch-icon" href="favicon.png" />
+  <link rel="icon" type="image/png" href="favicon-512.png" />
+  <link rel="apple-touch-icon" href="favicon-512.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Serrurier Nancy & Toul – Dépannage 24h/24 | Le Serrurier 54</title>
-  <meta name="description" content="Serrurier à Nancy, Toul et Lunéville disponible 24h/24 · 7j/7. Ouverture de porte, remplacement de serrure, serrure blindée A2P. Devis gratuit. ☎ 06 02 11 38 46" />
+  <title>Serrurier Nancy &amp; Toul – Dépannage 24h/24 | Le Serrurier 54</title>
+  <meta name="description" content="Serrurier à Nancy, Toul et Lunéville 24h/24 · 7j/7. Ouverture de porte dès 90 € · Tarifs 2026 · Devis gratuit. ☎ 06 02 11 38 46" />
   <meta name="geo.region" content="FR-54" />
   <meta name="geo.placename" content="Meurthe-et-Moselle" />
   <meta name="geo.position" content="48.6921;6.1844" />
@@ -15,7 +15,7 @@
   <meta name="author" content="Le Serrurier 54" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://le-serrurier54.fr/" />
-  <meta property="og:title" content="Serrurier Nancy & Toul – Dépannage 24h/24 | Le Serrurier 54" />
+  <meta property="og:title" content="Serrurier Nancy &amp; Toul – Dépannage 24h/24 | Le Serrurier 54" />
   <meta property="og:description" content="Serrurier professionnel à Nancy, Toul et Lunéville, disponible 24h/24 · 7j/7. ☎ 06 02 11 38 46" />
   <meta property="og:image" content="https://le-serrurier54.fr/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -23,6 +23,8 @@
   <meta property="og:site_name" content="Le Serrurier 54" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -293,7 +295,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--noir);
+      background: #e63030;
       color: var(--blanc);
       font-weight: 700;
       font-size: clamp(0.8rem, 3.5vw, 1.1rem);
@@ -348,26 +350,62 @@
       .faq { padding: 40px 16px; }
     }
   </style>
+  <!-- Données structurées : fiche entreprise (un seul bloc) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "Locksmith",
+    "@id": "https://le-serrurier54.fr/#entreprise",
     "name": "Le Serrurier 54",
-    "telephone": "0602113846",
-    "url": "https://le-serrurier54.fr",
-    "address": { "@type": "PostalAddress", "addressRegion": "Meurthe-et-Moselle", "addressCountry": "FR" },
-    "openingHours": "Mo-Su 00:00-24:00",
-    "areaServed": ["Nancy", "Toul", "Lunéville", "Vandœuvre-lès-Nancy", "Laxou", "Pont-à-Mousson"]
+    "alternateName": "Le Serrurier",
+    "url": "https://le-serrurier54.fr/",
+    "telephone": "+33602113846",
+    "image": "https://le-serrurier54.fr/og-image.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Écrouves",
+      "postalCode": "54200",
+      "addressRegion": "Meurthe-et-Moselle",
+      "addressCountry": "FR"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "areaServed": ["Nancy", "Toul", "Lunéville", "Pont-à-Mousson", "Vandœuvre-lès-Nancy", "Laxou", "Maxéville", "Malzéville", "Jarville-la-Malgrange", "Essey-lès-Nancy", "Saint-Max", "Tomblaine", "Villers-lès-Nancy"],
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "37" },
+    "review": [
+      { "@type": "Review", "author": { "@type": "Person", "name": "Simon C." }, "reviewRating": { "@type": "Rating", "ratingValue": "5" }, "reviewBody": "Très satisfait de la prestation ! Intervention rapide, travail soigné et prix des plus honnête. Je recommande vivement !" },
+      { "@type": "Review", "author": { "@type": "Person", "name": "Mayssene O." }, "reviewRating": { "@type": "Rating", "ratingValue": "5" }, "reviewBody": "Serrurier empathique très rassurant et agréable, et surtout HONNÊTE !!! Vous pouvez y aller les yeux fermés !" },
+      { "@type": "Review", "author": { "@type": "Organization", "name": "CÔME Service Gestion" }, "reviewRating": { "@type": "Rating", "ratingValue": "5" }, "reviewBody": "Professionnel, réactif et honnête, il intervient rapidement et avec sérieux. Un partenaire de confiance." }
+    ]
   }
   </script>
+  <!-- Données structurées : FAQ (doit rester identique au texte visible) -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"LocalBusiness","name":"Le Serrurier 54","aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"37"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Simon C."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Très satisfait de la prestation ! Intervention rapide, travail soigné et prix des plus honnête. Je recommande vivement !"},{"@type":"Review","author":{"@type":"Person","name":"Mayssene Oubbéa"},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Serrurier empathique très rassurant et agréable, et surtout HONNÊTE !!! Vous pouvez y aller les yeux fermés !"},{"@type":"Review","author":{"@type":"Person","name":"CÔME Service Gestion"},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Professionnel, réactif et honnête, il intervient rapidement et avec sérieux. Un partenaire de confiance."}]}
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Intervenez-vous en urgence la nuit à Toul et Nancy ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, nous sommes disponibles 24h/24 et 7j/7, y compris les nuits, week-ends et jours fériés, à Toul, Nancy, Lunéville et dans tout le 54." } },
+      { "@type": "Question", "name": "Quel est le délai d'intervention ?", "acceptedAnswer": { "@type": "Answer", "text": "En général, nous sommes sur place en 30 minutes environ dans l'agglomération nancéienne et à Toul, un peu plus pour Lunéville ou Pont-à-Mousson. Appelez le 06 02 11 38 46 pour une estimation précise selon votre adresse." } },
+      { "@type": "Question", "name": "Combien coûte l'ouverture d'une porte claquée ?", "acceptedAnswer": { "@type": "Answer", "text": "Pour une porte claquée simple, comptez à partir de 90 € en semaine de jour, déplacement inclus. Une porte verrouillée à clé démarre à 110 €. Le prix exact dépend du type de serrure et de l'heure d'intervention : nous l'annonçons toujours avant d'intervenir, sans frais cachés." } },
+      { "@type": "Question", "name": "Quels sont vos tarifs la nuit, le week-end et les jours fériés ?", "acceptedAnswer": { "@type": "Answer", "text": "Porte claquée simple, déplacement inclus : 90 € en semaine, 110 € le week-end, 130 € les jours fériés, et de 130 à 160 € la nuit. Porte verrouillée à clé : 110 € en semaine, 140 € le week-end, 160 € les jours fériés, et de 140 à 200 € la nuit. Prix indicatifs pour une serrure standard, confirmés avant toute intervention." } },
+      { "@type": "Question", "name": "Posez-vous des serrures blindées certifiées A2P ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, nous installons des serrures blindées A2P (1, 2 ou 3 étoiles) pour particuliers et professionnels dans toute la Meurthe-et-Moselle." } },
+      { "@type": "Question", "name": "Ma clé est cassée dans la serrure, pouvez-vous intervenir ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Nous extrayons la clé cassée, puis nous remplaçons le cylindre ou la serrure si nécessaire, le plus souvent sur place." } },
+      { "@type": "Question", "name": "Installez-vous des serrures connectées ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, nous conseillons et posons des serrures connectées : ouverture par smartphone, digicode ou badge." } },
+      { "@type": "Question", "name": "Intervenez-vous pour les copropriétés et les professionnels ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Nous intervenons pour les copropriétés, les syndics et les commerces : ouverture de porte, remplacement de cylindre, pose et réglage de ferme-portes." } }
+    ]
+  }
   </script>
+  <script src="/consent.js" defer></script>
 </head>
 <body>
 
 <nav style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:16px 24px;">
-  <a href="index.html" class="nav-logo"><span class="le">LE</span> <span class="serrurier">SERRURIER 54</span></a>
+  <a href="/" class="nav-logo"><span class="le">LE</span> <span class="serrurier">SERRURIER 54</span></a>
   <div class="nav-links" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
     <a href="serrurier-nancy.html">Nancy</a>
     <a href="serrurier-toul.html">Toul</a>
@@ -380,7 +418,7 @@
 
 <header class="hero">
   <p style="font-family:Arial,sans-serif;font-size:1.1rem;font-weight:900;color:#ffffff;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;">Artisan Local</p>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 80" style="height:120px;width:auto;margin-bottom:20px;display:block;margin-left:auto;margin-right:auto;" alt="Logo Le Serrurier 54">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 80" role="img" aria-label="Logo Le Serrurier 54" style="height:120px;width:auto;margin-bottom:20px;display:block;margin-left:auto;margin-right:auto;">
   <rect x="42" y="35" width="100" height="10" rx="2" fill="white" stroke="white" stroke-width="1"/>
   <rect x="118" y="44" width="5" height="9" rx="1" fill="white" stroke="white" stroke-width="1"/>
   <rect x="132" y="44" width="5" height="7" rx="1" fill="white" stroke="white" stroke-width="1"/>
@@ -405,8 +443,8 @@
   <text x="98" y="44" font-family="Arial Black, Arial" font-weight="900" font-size="9" fill="#0C1B2E" text-anchor="middle" letter-spacing="0.3"><tspan fill="#E64D3B">LE</tspan> SERRURIER</text>
 </svg>
   <div class="hero-badge">📍 Meurthe-et-Moselle (54) — Nancy · Toul · Lunéville</div>
-  <h1>Votre serrurier à <em>Nancy & Toul</em>,<br>disponible 24h/24 quand vous en avez besoin</h1>
-  <p class="hero-sub">Porte claquée, clé perdue, serrure bloquée — on arrive vite, on travaille bien, et on vous explique tout avant de commencer.</p>
+  <h1>Votre serrurier à <em>Nancy &amp; Toul</em>,<br>disponible 24h/24 quand vous en avez besoin</h1>
+  <p class="hero-sub">Porte claquée, clé perdue, serrure bloquée — on arrive vite, on travaille bien, et on vous explique tout avant de commencer. Ouverture de porte dès 90 €, déplacement inclus.</p>
   <a href="tel:0602113846" class="hero-cta">📞 Appeler le 06 02 11 38 46</a>
   <div class="hero-stats">
     <div class="stat"><span class="stat-num">24h</span><span class="stat-label">Disponible</span></div>
@@ -443,6 +481,12 @@
       <h3>Serrurier Maxéville</h3>
       <p>Serrurier à Maxéville, commune nord de la métropole nancéienne. Disponible 24h/24.</p>
       <span class="ville-btn">Voir la page Maxéville →</span>
+    </a>
+    <a href="serrurier-malzeville.html" class="ville-card">
+      <span class="ville-icon">🏠</span>
+      <h3>Serrurier Malzéville</h3>
+      <p>Serrurier à Malzéville, commune de la métropole du Grand Nancy. Intervention rapide.</p>
+      <span class="ville-btn">Voir la page Malzéville →</span>
     </a>
     <a href="serrurier-vandoeuvre.html" class="ville-card">
       <span class="ville-icon">🏢</span>
@@ -519,7 +563,7 @@
     </div>
     <div class="service-card">
       <span class="service-icon">🔧</span>
-      <h3>Changement & réparation de serrure</h3>
+      <h3>Changement &amp; réparation de serrure</h3>
       <p>Remplacement ou réparation de serrure défectueuse, abîmée ou ancienne. On intervient sur tous types de serrures, à domicile ou en urgence.</p>
       <span class="service-tag">Toutes marques</span>
     </div>
@@ -527,7 +571,7 @@
       <span class="service-icon">🔒</span>
       <h3>Ferme-porte</h3>
       <p>Installation et réglage de ferme-portes pour copropriétés, commerces et particuliers.</p>
-      <span class="service-tag">Pose & réglage</span>
+      <span class="service-tag">Pose &amp; réglage</span>
     </div>
     <div class="service-card">
       <span class="service-icon">📱</span>
@@ -554,7 +598,7 @@
 <!-- ZONE -->
 <section class="zone">
   <h2 class="section-title">Zone d'intervention — <span>Meurthe-et-Moselle</span></h2>
-  <p>On intervient à Toul, Nancy, Lunéville et dans un rayon de 50 km, couvrant tout le département 54.</p>
+  <p>Basé à Écrouves, près de Toul, nous intervenons à Toul, Nancy, Lunéville et dans un rayon de 50 km, couvrant tout le département 54.</p>
   <div class="zone-grid">
     <div class="zone-item">Nancy</div>
     <div class="zone-item">Toul</div>
@@ -563,6 +607,7 @@
     <div class="zone-item">Vandœuvre</div>
     <div class="zone-item">Laxou</div>
     <div class="zone-item">Maxéville</div>
+    <div class="zone-item">Malzéville</div>
     <div class="zone-item">Pont-à-Mousson</div>
     <div class="zone-item">Neuves-Maisons</div>
     <div class="zone-item">Saint-Nicolas-de-Port</div>
@@ -614,20 +659,36 @@
     </div>
     <div class="faq-item">
       <p class="faq-q">Quel est le délai d'intervention ?</p>
-      <p class="faq-a">Nous intervenons le plus rapidement possible selon votre localisation. Appelez le 06 02 11 38 46 pour une estimation précise.</p>
+      <p class="faq-a">En général, nous sommes sur place en 30 minutes environ dans l'agglomération nancéienne et à Toul, un peu plus pour Lunéville ou Pont-à-Mousson. Appelez le 06 02 11 38 46 pour une estimation précise selon votre adresse.</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Combien coûte l'ouverture d'une porte claquée ?</p>
-      <p class="faq-a">Le tarif dépend du type de serrure et de l'heure d'intervention. Nous communiquons toujours le devis avant toute intervention, sans frais cachés.</p>
+      <p class="faq-a">Pour une porte claquée simple, comptez à partir de 90 € en semaine de jour, déplacement inclus. Une porte verrouillée à clé démarre à 110 €. Le prix exact dépend du type de serrure et de l'heure d'intervention : nous l'annonçons toujours avant d'intervenir, sans frais cachés.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Quels sont vos tarifs la nuit, le week-end et les jours fériés ?</p>
+      <p class="faq-a">Porte claquée simple, déplacement inclus : 90 € en semaine, 110 € le week-end, 130 € les jours fériés, et de 130 à 160 € la nuit. Porte verrouillée à clé : 110 € en semaine, 140 € le week-end, 160 € les jours fériés, et de 140 à 200 € la nuit. Prix indicatifs pour une serrure standard, confirmés avant toute intervention.</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Posez-vous des serrures blindées certifiées A2P ?</p>
       <p class="faq-a">Oui, nous installons des serrures blindées A2P (1, 2 ou 3 étoiles) pour particuliers et professionnels dans toute la Meurthe-et-Moselle.</p>
     </div>
+    <div class="faq-item">
+      <p class="faq-q">Ma clé est cassée dans la serrure, pouvez-vous intervenir ?</p>
+      <p class="faq-a">Oui. Nous extrayons la clé cassée, puis nous remplaçons le cylindre ou la serrure si nécessaire, le plus souvent sur place.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Installez-vous des serrures connectées ?</p>
+      <p class="faq-a">Oui, nous conseillons et posons des serrures connectées : ouverture par smartphone, digicode ou badge.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Intervenez-vous pour les copropriétés et les professionnels ?</p>
+      <p class="faq-a">Oui. Nous intervenons pour les copropriétés, les syndics et les commerces : ouverture de porte, remplacement de cylindre, pose et réglage de ferme-portes.</p>
+    </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
+<!-- CONSEILS (BLOG) -->
 <section style="background:var(--blanc);padding:64px 24px;">
   <div style="max-width:1000px;margin:0 auto;">
     <h2 class="section-title">Nos <span>conseils serrurerie</span></h2>
@@ -654,6 +715,7 @@
   </div>
 </section>
 
+<!-- CTA FINAL -->
 <section class="cta-final">
   <h2>Besoin d'un serrurier ?</h2>
   <p>On est là, disponibles maintenant. Devis gratuit avant toute intervention.</p>
@@ -664,6 +726,7 @@
   <p>© 2026 Le Serrurier 54 — Artisan serrurier Meurthe-et-Moselle (54) — <a href="tel:0602113846">06 02 11 38 46</a></p>
   <p style="margin-top:8px;"><a href="serrurier-nancy.html">Nancy</a> · <a href="serrurier-toul.html">Toul</a> · <a href="serrurier-luneville.html">Lunéville</a> · <a href="serrurier-pont-a-mousson.html">Pont-à-Mousson</a> · <a href="serrurier-vandoeuvre.html">Vandœuvre</a></p>
   <p style="margin-top:8px;"><a href="blog-bloque-dehors-nuit.html">Bloqué dehors la nuit ?</a> · <a href="blog-choisir-serrure.html">Choisir sa serrure</a> · <a href="blog-prix-serrurier.html">Prix serrurier 54</a></p>
+  <p style="margin-top:8px;"><a href="mentions-legales.html">Mentions légales</a> · <a href="#" id="cookie-settings">Gérer les cookies</a></p>
 </footer>
 
 <div class="sticky-cta">
