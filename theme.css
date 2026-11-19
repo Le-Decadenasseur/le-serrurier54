@@ -121,3 +121,11 @@ body { background: #ffffff; }
 .guide .ci { font-size: 1.4rem; }
 .guide .fl { margin-left: auto; color: #e63030; font-size: 1.2rem; }
 @media (max-width: 600px) { .intro table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: .88rem; } }
+
+/* v3 : pas de surlignement, chaque paragraphe en pastille */
+.intro p strong { background: none !important; padding: 0 !important; color: #A32D2D !important; }
+.intro > p, .intro .suite > p { background: #ffffff; border: 1.5px solid #F7C1C1; border-radius: 14px; padding: 14px 16px; margin-bottom: 12px !important; }
+.intro > p.enbref { border: 1.5px solid #e63030 !important; border-left-width: 1.5px !important; border-radius: 14px !important; background: #FCEBEB; }
+.pastille { padding: 12px 14px; display: block; }
+.pastille strong { margin-bottom: 2px; }
+.carte-tete { margin-bottom: 6px; }
