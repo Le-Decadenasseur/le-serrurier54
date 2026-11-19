@@ -101,3 +101,23 @@ body { background: #ffffff; }
 .js-suite .intro.ouvert .suite { max-height: 6000px; }
 .lire-suite { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; background: #ffffff; border: 1.5px solid #e63030; color: #e63030; font-weight: 700; font-size: .95rem; padding: 9px 18px; border-radius: 30px; cursor: pointer; font-family: inherit; }
 .lire-suite:hover { background: #FCEBEB; }
+
+/* Cartes de texte (même principe que les pastilles) */
+.cartes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 6px; }
+.carte { background: #ffffff; border: 1.5px solid #F7C1C1; border-radius: 16px; padding: 16px 18px; transition: transform .25s, box-shadow .25s; }
+.carte:nth-child(3n+2) { border-color: #FAC775; }
+.carte:nth-child(3n+3) { border-color: #B5D4F4; }
+.carte:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(12,27,46,0.10); }
+.carte-tete { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.carte-tete h3 { font-family: Arial, sans-serif; font-size: 1.02rem; line-height: 1.25; color: #0C1B2E; margin: 0; }
+.carte .ci { font-size: 1.5rem; flex-shrink: 0; }
+.intro .carte p { font-size: .95rem !important; line-height: 1.6 !important; margin: 0 !important; }
+.intro .carte p strong { background: none; color: #A32D2D !important; padding: 0; }
+.cartes-etapes .carte { border-color: #F7C1C1; }
+.carte .num { display: inline-flex; width: 34px; height: 34px; border-radius: 50%; background: #e63030; color: #fff; font-weight: 900; font-size: 1rem; align-items: center; justify-content: center; }
+.guides { display: grid; gap: 10px; }
+.guide { display: flex; align-items: center; gap: 12px; background: #ffffff; border: 1.5px solid #F7C1C1; border-radius: 14px; padding: 14px 16px; text-decoration: none; color: #0C1B2E; font-weight: 700; }
+.guide:hover { border-color: #e63030; background: #FCEBEB; }
+.guide .ci { font-size: 1.4rem; }
+.guide .fl { margin-left: auto; color: #e63030; font-size: 1.2rem; }
+@media (max-width: 600px) { .intro table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; font-size: .88rem; } }

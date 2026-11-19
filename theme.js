@@ -7,7 +7,7 @@
   // 1. Apparition au défilement
   if (!reduce) {
     root.classList.add('js-reveal');
-    var sel = '.intro, .etapes-liste li, .pastille, .service-card, .card, .ville-card, .avis-card, .faq-item, .section-title, .zone-item, .commune-item';
+    var sel = '.intro, .carte, .guide, .etapes-liste li, .pastille, .service-card, .card, .ville-card, .avis-card, .faq-item, .section-title, .zone-item, .commune-item';
     var els = document.querySelectorAll(sel);
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -36,7 +36,7 @@
     var firstP = kids.findIndex(function (k) { return k.tagName === 'P'; });
     if (firstP < 0) return;
     var h2 = sec.querySelector('h2');
-    if (sec.querySelector('table') || (h2 && /tarif|prix/i.test(h2.textContent))) return;
+    if (sec.querySelector('table, .cartes, .guides') || (h2 && /tarif|prix/i.test(h2.textContent))) return;
     var rest = kids.slice(firstP + 1).filter(function (k) { return !k.classList.contains('pastilles'); });
     var len = rest.reduce(function (n, k) { return n + k.textContent.length; }, 0);
     if (len < 220) return;
