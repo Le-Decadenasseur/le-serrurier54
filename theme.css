@@ -1,0 +1,58 @@
+/* Le Serrurier 54 — ambiance « blanc éclatant + rouge vif » (nov. 2026)
+   Chargé après les styles de chaque page : surcharge le thème beige d'origine. */
+:root {
+  --creme: #ffffff;
+  --or: #e63030;
+  --light-bg: #ffffff;
+  --t-rouge: #E24B4A; --t-rouge-bg: #FCEBEB; --t-rouge-txt: #791F1F;
+  --t-ambre: #EF9F27; --t-ambre-bg: #FAEEDA; --t-ambre-txt: #633806;
+  --t-bleu:  #378ADD; --t-bleu-bg:  #E6F1FB; --t-bleu-txt:  #0C447C;
+}
+body { background: #ffffff; }
+.hero::before { background: radial-gradient(ellipse at 60% 0%, rgba(230,48,48,0.22) 0%, transparent 70%) !important; }
+
+/* Titres de section : petit trait rouge dessous */
+.section-title::after { content: ""; display: block; width: 56px; height: 4px; border-radius: 4px; background: #e63030; margin: 14px auto 0; }
+
+/* Cartes de services : couleurs alternées rouge / ambre / bleu */
+.service-card, .card { border: none !important; border-radius: 18px !important; background: var(--t-rouge-bg) !important; transition: transform .25s, box-shadow .25s !important; }
+.service-card:nth-child(3n+2), .card:nth-child(3n+2) { background: var(--t-ambre-bg) !important; }
+.service-card:nth-child(3n+3), .card:nth-child(3n+3) { background: var(--t-bleu-bg) !important; }
+.service-card:hover, .card:hover { transform: translateY(-5px) !important; box-shadow: 0 14px 30px rgba(12,27,46,0.12); }
+.service-card h3, .card h3 { color: var(--t-rouge-txt); }
+.service-card:nth-child(3n+2) h3, .card:nth-child(3n+2) h3 { color: var(--t-ambre-txt); }
+.service-card:nth-child(3n+3) h3, .card:nth-child(3n+3) h3 { color: var(--t-bleu-txt); }
+.service-card p { color: #3d3d3a !important; }
+
+/* Pastilles d'icônes */
+.service-icon { display: inline-flex !important; align-items: center; justify-content: center; width: 58px; height: 58px; border-radius: 50%; background: var(--t-rouge); font-size: 1.7rem !important; margin-bottom: 16px !important; transition: transform .3s; }
+.service-card:nth-child(3n+2) .service-icon { background: var(--t-ambre); }
+.service-card:nth-child(3n+3) .service-icon { background: var(--t-bleu); }
+.service-icon svg { width: 30px !important; height: 30px !important; color: #ffffff !important; }
+.service-card:hover .service-icon { transform: scale(1.1) rotate(-6deg); }
+
+/* Étiquettes sous les cartes */
+.service-tag { background: #ffffff !important; color: var(--t-rouge-txt) !important; font-weight: 700 !important; }
+.service-card:nth-child(3n+2) .service-tag { color: var(--t-ambre-txt) !important; }
+.service-card:nth-child(3n+3) .service-tag { color: var(--t-bleu-txt) !important; }
+
+/* Villes, communes, zones */
+.ville-card, .ville-chip, .zone-item, .commune-item { border-color: #F7C1C1 !important; }
+.ville-card:hover, .ville-chip:hover { border-color: #e63030 !important; box-shadow: 0 12px 28px rgba(230,48,48,0.15); }
+.ville-btn { background: #e63030 !important; color: #ffffff !important; }
+
+/* Avis : fond rosé, étoiles dorées */
+.avis { background: #FFF5F5 !important; }
+.avis-card { border-top: 4px solid #e63030; }
+.stars { color: #fbbc04 !important; letter-spacing: 2px; }
+
+/* FAQ */
+.faq-item { border-color: #F7C1C1 !important; }
+
+/* Apparition au défilement (activée seulement si le script tourne) */
+.js-reveal .rv { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s ease; }
+.js-reveal .rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .rv { opacity: 1; transform: none; transition: none; }
+  .service-card, .card, .service-icon { transition: none !important; }
+}
