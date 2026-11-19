@@ -7,7 +7,7 @@
   // 1. Apparition au défilement
   if (!reduce) {
     root.classList.add('js-reveal');
-    var sel = '.service-card, .card, .ville-card, .avis-card, .faq-item, .section-title, .zone-item, .commune-item';
+    var sel = '.intro, .service-card, .card, .ville-card, .avis-card, .faq-item, .section-title, .zone-item, .commune-item';
     var els = document.querySelectorAll(sel);
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -20,6 +20,14 @@
       io.observe(el);
     });
   }
+
+  // 3. Blocs de texte : alternance de fond + encadré « En bref »
+  document.querySelectorAll('.intro').forEach(function (s, i) {
+    if (i % 2) s.classList.add('alt');
+    s.querySelectorAll('p').forEach(function (p) {
+      if (/^\s*En bref/i.test(p.textContent)) p.classList.add('enbref');
+    });
+  });
 
   // 2. Chiffres animés (24h, 7j, 61…) — le texte d'origine reste en place sans JS
   var nums = document.querySelectorAll('.stat-num');
