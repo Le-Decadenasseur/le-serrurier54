@@ -9,7 +9,7 @@
   --t-bleu:  #378ADD; --t-bleu-bg:  #E6F1FB; --t-bleu-txt:  #0C447C;
 }
 body { background: #ffffff; }
-.hero::before { background: radial-gradient(ellipse at 60% 0%, rgba(230,48,48,0.22) 0%, transparent 70%) !important; }
+.hero::before { display: none !important; }
 
 /* Titres de section : petit trait rouge dessous */
 .section-title::after { content: ""; display: block; width: 56px; height: 4px; border-radius: 4px; background: #e63030; margin: 14px auto 0; }
